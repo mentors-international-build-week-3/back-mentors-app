@@ -12,9 +12,8 @@ serverMongo.use(express.json());
 
 let MessageSchema = new mongoose.Schema({
     phoneNumber: String,
-    clientName: String,
-    className: String,
-    prepared: String,
+    studentName: String,
+    studentClass: String,
     apptDate: String
 });
 
@@ -45,8 +44,42 @@ serverMongo.post('/inbound', (req, res) => {
         // console.log(message);
 
         if (message.length !== 0) {
-            // if message.length !== 0, this means there is a conversation stored in our mongoDB that we can continue
+            // this means there is a conversation stored in our mongoDB that we can continue
+            if (!message[0].studentName && !message[0].studentClass && !message[0].apptDate) {
+                // if there is no matching 'studentName', 'studentClass', or 'apptDate' info in our DB, 
+                // then we know this is the info the clients wants to update
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"studentName": body}}, {"new": true, "upsert": true}, () => {
+                    client.messages.create({
+                        to: `${from}`,
+                        from: `${to}`,
+                        body: "Which mentorship training class do you attend?",
+                    })
 
+                    res.end();
+                })
+            } else if (!message[0].studentClass && !message[0].apptDate) {
+                // if there is no matching 'studentClass' or 'apptDate' info in our DB, then we know this is the info the clients wants to update
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"studentClass": body}}, {"new": true, "upsert": true}, () => {
+                    client.messages.create({
+                        to: `${from}`,
+                        from: `${to}`,
+                        body: "What is the date of your next mentorship session?",
+                    })
+
+                    res.end();
+                })
+            } else if (!message[0].apptDate) {
+                // if there is no matching 'apptDate' info in our DB, then we know this is the info the clients wants to update
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"apptDate": body}}, {"new": true, "upsert": true}, () => {
+                    client.messages.create({
+                        to: `${from}`,
+                        from: `${to}`,
+                        body: "Thanks for setting up your automated mentors int'l text reminder! See you soon!",
+                    })
+
+                    res.end();
+                })
+            }
         } else {
             if (body === 'RSVP') {
                 let newMessage = new Message();
@@ -56,7 +89,7 @@ serverMongo.post('/inbound', (req, res) => {
                         // this creates a new return message to send BACK to the owner of the incoming text
                         to: `${from}`, // the 'from' refers to the sender's phone number, which now becomes the receiver's phone number for our new return message
                         from: `${to}`, // the 'to' refers to the Mentors App phone number, which now becomes the sender's phone number in the new return message
-                        body: "Hello! What's your name?",
+                        body: "Hi! What's your name?",
                     })
 
                     res.end();
