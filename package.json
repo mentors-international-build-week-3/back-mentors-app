@@ -1,0 +1,20 @@
+{
+  "name": "back-mentors-app",
+  "version": "1.0.0",
+  "description": "This is the GitHub repository for the back end portion of the Mentors International Training Reminders project for Lambda School's Build Week April 15 -19.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mentors-international-build-week-3/back-mentors-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mentors-international-build-week-3/back-mentors-app/issues"
+  },
+  "homepage": "https://github.com/mentors-international-build-week-3/back-mentors-app#readme"
+}
