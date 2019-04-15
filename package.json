@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/mentors-international-build-week-3/back-mentors-app/issues"
   },
-  "homepage": "https://github.com/mentors-international-build-week-3/back-mentors-app#readme"
+  "homepage": "https://github.com/mentors-international-build-week-3/back-mentors-app#readme",
+  "dependencies": {
+    "twilio": "^3.30.1"
+  }
 }
