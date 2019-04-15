@@ -36,10 +36,16 @@ server.get("/", (req, res) => {
   res.end();
 });
 
-server.post('/inbound', (req, res) => {
+server.post('/incoming', (req, res) => {
     let from = req.body.From; // this refers to the mentor's phone number, which new messages will be sent FROM
     let to = req.body.To; // this refers to the client's phone number, which is where the new messages will be sent TO
     let body = req.body.Body; // this references the BODY of the new message that will be sent
+
+    Message.find({phoneNumber: req.body.From}, (err, message) => {
+        console.log(message);
+
+        res.end();
+    })
 });
 
 module.exports = server;
