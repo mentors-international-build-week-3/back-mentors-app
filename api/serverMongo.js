@@ -10,16 +10,15 @@ const client = new twilio(accountSid, authToken);
 
 server.use(express.json());
 
-
 let MessageSchema = new mongoose.Schema({
     phoneNumber: String,
-    groupName: String,
+    clientName: String,
+    className: String,
     prepared: String,
     apptDate: String
 });
 
 let Message = mongoose.model('Message', MessageSchema);
-
 
 mongoose
   .connect(
@@ -32,7 +31,6 @@ mongoose
   .catch(error => {
     console.log(error);
   });
-
 
 server.get("/", (req, res) => {
   res.end();
