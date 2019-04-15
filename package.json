@@ -4,7 +4,9 @@
   "description": "This is the GitHub repository for the back end portion of the Mentors International Training Reminders project for Lambda School's Build Week April 15 -19.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +20,13 @@
   },
   "homepage": "https://github.com/mentors-international-build-week-3/back-mentors-app#readme",
   "dependencies": {
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "mongodb": "^3.2.3",
     "mongoose": "^5.5.1",
     "twilio": "^3.30.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.11"
   }
 }
