@@ -1,5 +1,9 @@
 require('dotenv').config();
-const server = require('./api/server.js');
+const serverMongo = require('./api/serverMongo.js');
+// const serverPostgresql = require('./api/serverPostgresql.js');
 
-const port = process.env.PORT || 4000;
-server.listen(port, () => console.log(`\n** Mentors App server is up and running on port ${port} **\n`));
+const portMongo = process.env.PORT_MONGO || 4000;
+serverMongo.listen(portMongo, () => console.log(`\n** Mentors Int'l App (MongoDB) server is up and running on port ${portMongo} **\n`));
+
+// const portPostgresql = process.env.PORT_POSTGRESQL || 6000;
+// serverPostgresql.listen(portPostgresql, () => console.log(`\n** Mentors Int'l App (PostgreSQL) server is up and running on port ${portPostgresql} **\n`));

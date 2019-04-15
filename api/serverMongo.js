@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const server = express();
@@ -11,14 +11,20 @@ const client = new twilio(accountSid, authToken);
 
 server.use(express.json());
 
-mongoose.connect(`mongodb+srv://ticotheps:${mongoPassword}@mentors-db-hokei.mongodb.net/test?retryWrites=true`, { useNewUrlParser: true }).then(() => {
-    console.log('The mongoDB is connected!');
-}).catch(error => {
+mongoose
+  .connect(
+    `mongodb+srv://ticotheps:${mongoPassword}@mentors-db-hokei.mongodb.net/test?retryWrites=true`,
+    { useNewUrlParser: true }
+  )
+  .then(() => {
+    console.log("The MongoDB is connected!");
+  })
+  .catch(error => {
     console.log(error);
-});
+  });
 
-server.get('/', (req, res) => {
-    res.end();
+server.get("/", (req, res) => {
+  res.end();
 });
 
 module.exports = server;
