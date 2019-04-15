@@ -11,7 +11,7 @@ const client = new twilio(accountSid, authToken);
 
 server.use(express.json());
 
-mongoose.connect(`mongodb+srv://ticotheps:${mongoUserPassword}>@mentors-db-hokei.mongodb.net/test?retryWrites=true`, {useMongoClient: true}).then(() => {
+mongoose.connect(`mongodb+srv://ticotheps:${process.env.MONGO_USER_PASSWORD}>@mentors-db-hokei.mongodb.net/test?retryWrites=true`, { useNewUrlParser: true }).then(() => {
     console.log('The mongoDB is connected!');
 });
 
