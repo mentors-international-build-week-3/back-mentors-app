@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// Imports the Mentee Model (so we can query 'mentees' collection in the MongoDB)
+// Imports the Mentee Model (so we can query the 'mentees' collection in the MongoDB)
 const Mentee = require('../../models/Mentee');
 
 
@@ -9,7 +9,8 @@ const Mentee = require('../../models/Mentee');
 // @desc    Retrieves all mentees from MongoDB
 // @access  Public 
 router.get('/', (req, res) => {
-    Mentee.find()
+    Mentee
+        .find()
         .sort({ createdDate: -1 }) // sorts all retrieved mentees by createdDate; "-1" = descending order, "1" = ascending order 
         .then(mentees => {
             res.status(200).json(mentees);

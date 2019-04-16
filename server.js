@@ -11,6 +11,9 @@ const client = new twilio(twilioSid, twilioAuthToken);
 // any requests that go to the '/api/mentees' endpoint will refer to this folder
 const mentees = require('./routes/api/mentees');
 
+// any requests that go to the '/api/conversations' endpoint will refer to this folder
+const conversations = require('./routes/api/conversations');
+
 const server = express();
 
 server.use(express.json());
@@ -31,6 +34,12 @@ mongoose
 // tells the server to use the routes from the 'mentees' constant (defined above), 
 // for any requests to the '/api/mentees' endpoint
 server.use('/api/mentees', mentees); 
+
+// tells the server to use the routes from the 'conversations' constant (defined above), 
+// for any requests to the '/api/conversations' endpoint
+server.use('/api/conversations', conversations); 
+
+
 
 const port = process.env.PORT || 4000;
 
