@@ -14,9 +14,9 @@ const client = new twilio(twilioSid, twilioAuthToken);
 
 // any requests that go to the '/api/mentees' endpoint will refer to this folder
 const mentees = require('./routes/api/mentees');
-// any requests that go to the '/api/conversations' endpoint will refer to this folder
-const conversations = require('./routes/api/conversations');
-// any requests that go to the '/api/conversations' endpoint will refer to this folder
+// any requests that go to the '/api/messages' endpoint will refer to this folder
+const messages = require('./routes/api/messages');
+// any requests that go to the '/api/users' endpoint will refer to this folder
 const users = require('./routes/api/users');
 
 
@@ -49,7 +49,7 @@ server.use('/api/users', users);
 
 // tells the server to use the routes from the 'conversations' constant (defined above), 
 // for any requests to the '/' endpoint
-server.use('/', conversations);
+server.use('/api/messages', messages);
 
 
 const port = process.env.PORT || 4000;

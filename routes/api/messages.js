@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-// Imports the Conversation Model (so we can query the 'conversations' collection in the MongoDB)
-const Conversation = require('../../models/Conversation');
+// Imports the Message Model (so we can query the 'messages' collection in the MongoDB)
+const Message = require('../../models/Message');
 
 
-// @route   GET request to the '/api/conversations' endpoint
-// @desc    Retrieves all conversations from MongoDB
+// @route   GET request to the '/api/messages' endpoint
+// @desc    Retrieves all messages from MongoDB
 // @access  Public 
 router.get('/', (req, res) => {
-    Conversation
+    Message
         .find()
-        .sort({ createdDate: -1 }) // sorts all retrieved conversations by createdDate; "-1" = descending order, "1" = ascending order 
-        .then(conversations => {
-            res.status(200).json(conversations);
+        .sort({ createdDate: -1 }) // sorts all retrieved messages by createdDate; "-1" = descending order, "1" = ascending order 
+        .then(messages => {
+            res.status(200).json(messages);
         })
         .catch(err => {
             res.status(500).res.json(err);
@@ -21,13 +21,13 @@ router.get('/', (req, res) => {
 });
 
 
-// @route   POST request to the '/api/conversations' endpoint
-// @desc    Creates a new conversation document
+// @route   POST request to the '/api/messages' endpoint
+// @desc    Creates a new message document
 // @access  Public 
 router.post('/', (req, res) => {
-    // 'new' refers to the creation of a new instance of the 'Conversation' model from Conversation.js
-    // 'Conversation' refers to the use of the 'Conversation' model (from Schema) as a template to build our new instance
-    const newConversation = new Conversation({
+    // 'new' refers to the creation of a new instance of the 'Message' model from Message.js
+    // 'Message' refers to the use of the 'Message' model (from Schema) as a template to build our new instance
+    const newMessage = new Message({
         menteeFirstName: req.body.menteeFirstName,
         menteeLastName: req.body.menteeLastName,
         phoneNumber: req.body.phoneNumber,
@@ -37,10 +37,10 @@ router.post('/', (req, res) => {
     }); 
 
      
-    newConversation
-        .save() // saves the new conversation object as a new document in the MongoDB
-        .then(conversation => {
-            res.json(conversation);
+    newMessage
+        .save() // saves the new message object as a new document in the MongoDB
+        .then(message => {
+            res.json(message);
         })
         .catch(err => {
             res.json(err);
@@ -48,54 +48,54 @@ router.post('/', (req, res) => {
 });
 
 
-// @route   DELETE request to the 'api/conversations/:id' endpoint
-// @desc    Deletes a specific conversation
+// @route   DELETE request to the 'api/messages/:id' endpoint
+// @desc    Deletes a specific message
 // @access  Public 
 router.delete('/:id', (req, res) => {
-    Conversation
+    Message
         .findById(req.params.id)
-        .then(conversation => {
-            conversation
+        .then(message => {
+            message
                 .remove()
                 .then(() => {
                     res.status(202).json({ delete_success: true });
                 })
                 .catch(err => {
-                    res.status(404).json({ error_message: "Conversation was not deleted because this conversation could not be found"});
+                    res.status(404).json({ error_message: "Message was not deleted because this message could not be found"});
                 });
         })
         .catch(err => {
-            res.status(500).json({ error_message: "Something went wrong while trying to delete this conversation from the database"});
+            res.status(500).json({ error_message: "Something went wrong while trying to delete this message from the database"});
         });
 });
 
 
-// @route   PUT request to 'api/conversations/:id'
-// @desc    Updates a specific conversation's document
+// @route   PUT request to 'api/messages/:id'
+// @desc    Updates a specific message's document
 // @access  Public 
 router.put('/:id', (req, res) => {
-    Conversation
+    Message
         .findById(req.params.id)
-        .then((conversation, err) => {
-            if (!conversation) {
+        .then((message, err) => {
+            if (!message) {
 
-                res.status(404).json({ message: "Conversation was not updated because this conversation could not be found" });
+                res.status(404).json({ error_message: "Message was not updated because this message could not be found" });
             } else {
 
-                (req.body.menteeFirstName) ? conversation.menteeFirstName = req.body.menteeFirstName : null;
-                (req.body.menteeLastName) ? conversation.menteeLastName = req.body.menteeLastName : null;
-                (req.body.phoneNumber) ? conversation.phoneNumber = req.body.phoneNumber : null;
-                (req.body.attending) ? conversation.attending = req.body.attending : null;
-                (req.body.noAttendReason) ? conversation.noAttendReason = req.body.noAttendReason : null;
-                (req.body.needBooks) ? conversation.needBooks = req.body.needBooks : null;
+                (req.body.menteeFirstName) ? message.menteeFirstName = req.body.menteeFirstName : null;
+                (req.body.menteeLastName) ? message.menteeLastName = req.body.menteeLastName : null;
+                (req.body.phoneNumber) ? message.phoneNumber = req.body.phoneNumber : null;
+                (req.body.attending) ? message.attending = req.body.attending : null;
+                (req.body.noAttendReason) ? message.noAttendReason = req.body.noAttendReason : null;
+                (req.body.needBooks) ? message.needBooks = req.body.needBooks : null;
 
-                conversation
+                message
                     .save()
-                    .then(conversation => {
-                        res.status(202).json({ message: "Conversation was updated successfully" });
+                    .then(message => {
+                        res.status(202).json({ error_message: "Message was updated successfully" });
                     })
                     .catch(err => {
-                        res.status(400).json({ message: "Something went wrong while trying to update this conversation" });
+                        res.status(400).json({ error_message: "Something went wrong while trying to update this message" });
                     });
             }
         });
@@ -104,11 +104,6 @@ router.put('/:id', (req, res) => {
 
 module.exports = router;
 
-
-
-// server.get("/", (req, res) => {
-//     res.end();
-//   });
   
 //   server.post("/inbound", (req, res) => {
 //     let from = req.body.From; // this refers to the mentor's phone number, which new messages will be sent FROM
