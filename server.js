@@ -8,8 +8,8 @@ const twilioSid = require('./config/keys').accountSid;
 const twilioAuthToken = require('./config/keys').authToken;
 const client = new twilio(twilioSid, twilioAuthToken);
 
-// any requests that go to the '/api/messages' endpoint will refer to this folder
-const messages = require('./routes/api/messages');
+// any requests that go to the '/api/mentees' endpoint will refer to this folder
+const mentees = require('./routes/api/mentees');
 
 const server = express();
 
@@ -28,9 +28,9 @@ mongoose
         console.log(err)
     });
 
-// tells the server to use the routes from the 'messages' constant, 
-// which is defined above, for any requests to the '/api/messages' endpoint
-server.use('/api/messages', messages); 
+// tells the server to use the routes from the 'mentees' constant (defined above), 
+// for any requests to the '/api/mentees' endpoint
+server.use('/api/mentees', mentees); 
 
 const port = process.env.PORT || 4000;
 

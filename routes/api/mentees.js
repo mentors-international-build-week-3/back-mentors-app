@@ -1,18 +1,18 @@
 const express = require('express');
 const router = express.Router();
 
-// Imports the Message Model (so we can query the MongoDB)
-const Message = require('../../models/Message');
+// Imports the Mentee Model (so we can query 'mentees' collection in the MongoDB)
+const Mentee = require('../../models/Mentee');
 
 
-// @route   GET request to the '/api/messages' endpoint
-// @desc    Retrieves all messages from MongoDB
+// @route   GET request to the '/api/mentees' endpoint
+// @desc    Retrieves all mentees from MongoDB
 // @access  Public 
 router.get('/', (req, res) => {
-    Message.find()
-        .sort({ date: -1 }) // sorts all retrieved messages by date; "-1" = descending order, "1" = ascending order 
-        .then(messages => {
-            res.status(200).json(messages);
+    Mentee.find()
+        .sort({ createdDate: -1 }) // sorts all retrieved mentees by createdDate; "-1" = descending order, "1" = ascending order 
+        .then(mentees => {
+            res.status(200).json(mentees);
         })
         .catch(err => {
             res.status(500).res.json(err);
@@ -20,24 +20,24 @@ router.get('/', (req, res) => {
 });
 
 
-// @route   POST request to '/api/messages'
-// @desc    Creates a new message
+// @route   POST request to the '/api/mentees' endpoint
+// @desc    Creates a new mentee document
 // @access  Public 
 router.post('/', (req, res) => {
-    // 'new' refers to us creating a new instance of the 'Message' model we made in Message.js
-    // 'Message' refers to the 'Message' model (from Schema) we created in Message.js
-    const newMessage = new Message({
-        clientName: req.body.clientName,
+    // 'new' refers to the creation of a new instance of the 'Mentee' model from Message.js
+    // 'Mentee' refers to the use of the 'Mentee' model (from Schema) as a template to build our new instance
+    const newMentee = new Mentee({
+        menteeName: req.body.menteeName,
         phoneNumber: req.body.phoneNumber,
         groupName: req.body.groupName,
         appointmentDate: req.body.appointmentDate
     }); 
 
      
-    newMessage
-        .save() // saves the new message to our MongoDB
-        .then(message => {
-            res.json(message);
+    newMentee
+        .save() // saves the new mentee object as a new document in our MongoDB
+        .then(mentee => {
+            res.json(mentee);
         })
         .catch(err => {
             res.json(err);
@@ -45,24 +45,24 @@ router.post('/', (req, res) => {
 });
 
 
-// @route   DELETE request to 'api/messages/:id'
-// @desc    Deletes a specific message
+// @route   DELETE request to the 'api/mentees/:id' endpoint
+// @desc    Deletes a specific mentee
 // @access  Public 
 router.delete('/:id', (req, res) => {
-    Message
+    Mentee
         .findById(req.params.id)
-        .then(message => {
-            message
+        .then(mentee => {
+            mentee
                 .remove()
                 .then(() => {
                     res.status(202).json({ delete_success: true });
                 })
                 .catch(err => {
-                    res.status(404).json({ error_message: "Item was not deleted because it could not be found"});
+                    res.status(404).json({ error_message: "Mentee was not deleted because this mentee could not be found"});
                 });
         })
         .catch(err => {
-            res.status(500).json({ error_message: "Something went wrong while trying to delete that message from the database"});
+            res.status(500).json({ error_message: "Something went wrong while trying to delete this mentee from the database"});
         });
 });
 

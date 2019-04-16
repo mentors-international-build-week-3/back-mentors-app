@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// Creates a Message model using Schema
-const MessageSchema = new Schema({
-    clientName: {
+// Creates a Mentee model using Schema
+const MenteeSchema = new Schema({
+    menteeName: {
         type: String,
     },
     phoneNumber: {
@@ -22,4 +22,4 @@ const MessageSchema = new Schema({
     }
 });
 
-module.exports = Message = mongoose.model('message', MessageSchema);
+module.exports = Mentee = mongoose.model('mentee', MenteeSchema);
