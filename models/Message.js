@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 
 // Creates a Message model using Schema
 const MessageSchema = new Schema({
-    phoneNumber: {
+    clientName: {
         type: String,
     },
-    clientName: {
+    phoneNumber: {
         type: String,
     },
     groupName: {

@@ -24,10 +24,13 @@ router.get('/', (req, res) => {
 // @desc    Creates a new message
 // @access  Public 
 router.post('/', (req, res) => {
-    // 'new' refers to us creating a new instance of the 'Item' model we made in Item.js
-    // 'Item' refers to the 'Item' model (template) we created in Item.js
+    // 'new' refers to us creating a new instance of the 'Message' model we made in Message.js
+    // 'Message' refers to the 'Message' model (from Schema) we created in Message.js
     const newMessage = new Message({
-        clientName: req.body.clientName
+        clientName: req.body.clientName,
+        phoneNumber: req.body.phoneNumber,
+        groupName: req.body.groupName,
+        appointmentDate: req.body.appointmentDate
     }); 
 
      
