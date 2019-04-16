@@ -43,14 +43,13 @@ mongoose
 // for any requests to the '/api/mentees' endpoint
 server.use('/api/mentees', mentees); 
 
-// tells the server to use the routes from the 'conversations' constant (defined above), 
-// for any requests to the '/api/conversations' endpoint
-server.use('/api/conversations', conversations);
-
 // tells the server to use the routes from the 'users' constant (defined above), 
 // for any requests to the '/api/users' endpoint
 server.use('/api/users', users); 
 
+// tells the server to use the routes from the 'conversations' constant (defined above), 
+// for any requests to the '/' endpoint
+server.use('/', conversations);
 
 
 const port = process.env.PORT || 4000;
