@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
+
+// Twilio-related dependencies
 const twilio = require("twilio");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
@@ -102,4 +104,8 @@ server.post('/inbound', (req, res) => {
     });
 });
 
-module.exports = server;
+const port = process.env.PORT || 4000;
+
+server.listen(port, () => {
+    console.log(`\n** The Mentors App server is up and running on port ${port} **\n`)
+});
