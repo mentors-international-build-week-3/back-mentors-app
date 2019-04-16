@@ -45,6 +45,28 @@ router.post('/', (req, res) => {
 });
 
 
+// @route   DELETE request to 'api/messages/:id'
+// @desc    Deletes a specific message
+// @access  Public 
+router.delete('/:id', (req, res) => {
+    Message
+        .findById(req.params.id)
+        .then(message => {
+            message
+                .remove()
+                .then(() => {
+                    res.status(202).json({ delete_success: true });
+                })
+                .catch(err => {
+                    res.status(404).json({ error_message: "Item was not deleted because it could not be found"});
+                });
+        })
+        .catch(err => {
+            res.status(500).json({ error_message: "Something went wrong while trying to delete that message from the database"});
+        });
+});
+
+
 
 
 
