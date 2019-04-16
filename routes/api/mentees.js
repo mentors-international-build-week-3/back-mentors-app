@@ -68,10 +68,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// @route   PUT request to 'api/mentees/update/:id'
+// @route   PUT request to 'api/mentees/:id'
 // @desc    Updates a specific mentee's document
 // @access  Public 
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     Mentee
         .findById(req.params.id)
         .then((mentee, err) => {
@@ -80,10 +80,10 @@ router.put('/update/:id', (req, res) => {
                 res.status(404).json({ message: "Mentee was not updated because this mentee could not be found" });
             } else {
 
-                mentee.menteeName = req.body.menteeName;
-                mentee.phoneNumber = req.body.phoneNumber;
-                mentee.groupName = req.body.groupName;
-                mentee.appointmentDate = req.body.appointmentDate;
+                (req.body.menteeName) ? mentee.menteeName = req.body.menteeName : null;
+                (req.body.phoneNumber) ? mentee.phoneNumber = req.body.phoneNumber : null;
+                (req.body.groupName) ? mentee.groupName = req.body.groupName : null;
+                (req.body.appointmentDate) ? mentee.appointmentDate = req.body.appointmentDate : null;
 
                 mentee
                     .save()

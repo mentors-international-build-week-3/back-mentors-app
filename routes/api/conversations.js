@@ -69,10 +69,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// @route   PUT request to 'api/conversations/update/:id'
+// @route   PUT request to 'api/conversations/:id'
 // @desc    Updates a specific conversation's document
 // @access  Public 
-router.put('/update/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     Conversation
         .findById(req.params.id)
         .then((conversation, err) => {
@@ -81,11 +81,11 @@ router.put('/update/:id', (req, res) => {
                 res.status(404).json({ message: "Conversation was not updated because this conversation could not be found" });
             } else {
 
-                conversation.menteeName = req.body.menteeName;
-                conversation.phoneNumber = req.body.phoneNumber;
-                conversation.attending = req.body.attending;
-                conversation.noAttendReason = req.body.noAttendReason;
-                conversation.needBooks = req.body.needBooks;
+                (req.body.menteeName) ? conversation.menteeName = req.body.menteeName : null;
+                (req.body.phoneNumber) ? conversation.phoneNumber = req.body.phoneNumber : null;
+                (req.body.attending) ? conversation.attending = req.body.attending : null;
+                (req.body.noAttendReason) ? conversation.noAttendReason = req.body.noAttendReason : null;
+                (req.body.needBooks) ? conversation.needBooks = req.body.needBooks : null;
 
                 conversation
                     .save()

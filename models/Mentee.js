@@ -5,13 +5,13 @@ const Schema = mongoose.Schema;
 // Creates a Mentee model using Schema
 const MenteeSchema = new Schema({
     menteeName: {
-        type: String,
+        type: String
     },
     phoneNumber: {
-        type: String,
+        type: String
     },
     groupName: {
-        type: String,
+        type: String
     },
     appointmentDate: {
         type: String

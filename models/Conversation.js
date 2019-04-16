@@ -5,16 +5,16 @@ const Schema = mongoose.Schema;
 // Creates a Conversation model using Schema
 const ConversationSchema = new Schema({
     menteeName: {
-        type: String,
+        type: String
     },
     phoneNumber: {
-        type: String,
+        type: String
     },
     attending: {
-        type: String,
+        type: String
     },
     noAttendReason: {
-        type: String,
+        type: String
     },
     needBooks: {
         type: String
