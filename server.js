@@ -6,9 +6,10 @@ const twilio = require("twilio");
 const db = require('./config/keys').mongoURI;
 const twilioSid = require('./config/keys').accountSid;
 const twilioAuthToken = require('./config/keys').authToken;
-
-
 const client = new twilio(twilioSid, twilioAuthToken);
+
+// any requests that go to the '/api/messages' endpoint will refer to this folder
+const messages = require('./routes/api/messages');
 
 const server = express();
 
@@ -33,6 +34,16 @@ mongoose
     .catch(err => {
         console.log(err)
     });
+
+// tells the server to use the routes from the 'messages' constant, 
+// which is defined above, for any requests to the '/api/messages' endpoint
+server.use('/api/messages', messages); 
+
+
+
+
+
+
 
 
 
