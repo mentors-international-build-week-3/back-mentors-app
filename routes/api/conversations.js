@@ -28,7 +28,8 @@ router.post('/', (req, res) => {
     // 'new' refers to the creation of a new instance of the 'Conversation' model from Conversation.js
     // 'Conversation' refers to the use of the 'Conversation' model (from Schema) as a template to build our new instance
     const newConversation = new Conversation({
-        menteeName: req.body.menteeName,
+        menteeFirstName: req.body.menteeFirstName,
+        menteeLastName: req.body.menteeLastName,
         phoneNumber: req.body.phoneNumber,
         attending: req.body.attending,
         noAttendReason: req.body.noAttendReason,
@@ -81,7 +82,8 @@ router.put('/:id', (req, res) => {
                 res.status(404).json({ message: "Conversation was not updated because this conversation could not be found" });
             } else {
 
-                (req.body.menteeName) ? conversation.menteeName = req.body.menteeName : null;
+                (req.body.menteeFirstName) ? conversation.menteeFirstName = req.body.menteeFirstName : null;
+                (req.body.menteeLastName) ? conversation.menteeLastName = req.body.menteeLastName : null;
                 (req.body.phoneNumber) ? conversation.phoneNumber = req.body.phoneNumber : null;
                 (req.body.attending) ? conversation.attending = req.body.attending : null;
                 (req.body.noAttendReason) ? conversation.noAttendReason = req.body.noAttendReason : null;

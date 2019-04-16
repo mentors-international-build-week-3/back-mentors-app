@@ -4,7 +4,10 @@ const Schema = mongoose.Schema;
 
 // Creates a Conversation model using Schema
 const ConversationSchema = new Schema({
-    menteeName: {
+    menteeFirstName: {
+        type: String
+    },
+    menteeLastName: {
         type: String
     },
     phoneNumber: {

@@ -10,6 +10,12 @@ const UserSchema = new Schema({
     password: {
         type: String
     },
+    userFirstName: {
+        type: String
+    },
+    userLastName: {
+        type: String
+    },
     userType: {
         type: String
     },

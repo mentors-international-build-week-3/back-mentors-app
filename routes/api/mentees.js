@@ -28,7 +28,8 @@ router.post('/', (req, res) => {
     // 'new' refers to the creation of a new instance of the 'Mentee' model from Message.js
     // 'Mentee' refers to the use of the 'Mentee' model (from Schema) as a template to build our new instance
     const newMentee = new Mentee({
-        menteeName: req.body.menteeName,
+        menteeFirstName: req.body.menteeFirstName,
+        menteeLastName: req.body.menteeLastName,
         phoneNumber: req.body.phoneNumber,
         groupName: req.body.groupName,
         appointmentDate: req.body.appointmentDate
@@ -80,7 +81,8 @@ router.put('/:id', (req, res) => {
                 res.status(404).json({ message: "Mentee was not updated because this mentee could not be found" });
             } else {
 
-                (req.body.menteeName) ? mentee.menteeName = req.body.menteeName : null;
+                (req.body.menteeFirstName) ? mentee.menteeFirstName = req.body.menteeFirstName : null;
+                (req.body.menteeLastName) ? mentee.menteeLastName = req.body.menteeLastName : null;
                 (req.body.phoneNumber) ? mentee.phoneNumber = req.body.phoneNumber : null;
                 (req.body.groupName) ? mentee.groupName = req.body.groupName : null;
                 (req.body.appointmentDate) ? mentee.appointmentDate = req.body.appointmentDate : null;

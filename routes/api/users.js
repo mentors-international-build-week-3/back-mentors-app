@@ -30,6 +30,8 @@ router.post('/', (req, res) => {
     const newUser = new User({
         userame: req.body.username,
         password: req.body.password,
+        userFirstName: req.body.userFirstName,
+        userLastName: req.body.userLastName,
         userType: req.body.userType,
         phoneNumber: req.body.phoneNumber,
         email: req.body.email,
@@ -83,6 +85,8 @@ router.put('/:id', (req, res) => {
 
                 (req.body.username) ? user.username = req.body.username : null;
                 (req.body.password) ? user.password = req.body.password : null;
+                (req.body.userFirstName) ? user.userFirstName = req.body.userFirstName : null;
+                (req.body.userLastName) ? user.userLastName = req.body.userLastName : null;
                 (req.body.userType) ? user.userType = req.body.userType : null;
                 (req.body.phoneNumber) ? user.phoneNumber = req.body.phoneNumber : null;
                 (req.body.email) ? user.email = req.body.email : null;
