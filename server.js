@@ -1,17 +1,19 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
 const twilio = require("twilio");
 
-const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = new twilio(accountSid, authToken);
+const db = require('./config/keys').mongoURI;
+const twilioSid = require('./config/keys').accountSid;
+const twilioAuthToken = require('./config/keys').authToken;
+
+
+const client = new twilio(twilioSid, twilioAuthToken);
 
 const server = express();
 
 server.use(express.json());
 
-const db = require('./config/keys').mongoURI;
 
 let MessageSchema = new mongoose.Schema({
   phoneNumber: String,
@@ -33,7 +35,7 @@ mongoose
     });
 
 
-    
+
 server.get("/", (req, res) => {
   res.end();
 });
