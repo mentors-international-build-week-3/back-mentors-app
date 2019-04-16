@@ -1,14 +1,15 @@
-require("dotenv").config();
+require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const serverMongo = express();
 const twilio = require("twilio");
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const mongoPassword = process.env.MONGO_USER_PASSWORD;
 const client = new twilio(accountSid, authToken);
 
-serverMongo.use(express.json());
+const server = express();
+
+server.use(express.json());
 
 let MessageSchema = new mongoose.Schema({
     phoneNumber: String,
@@ -31,11 +32,11 @@ mongoose
     console.log(error);
   });
 
-serverMongo.get("/", (req, res) => {
+server.get("/", (req, res) => {
   res.end();
 });
 
-serverMongo.post('/inbound', (req, res) => {
+server.post('/inbound', (req, res) => {
     let from = req.body.From; // this refers to the mentor's phone number, which new messages will be sent FROM
     let to = req.body.To; // this refers to the client's phone number, which is where the new messages will be sent TO
     let body = req.body.Body; // this references the BODY of the new message that will be sent
@@ -101,4 +102,4 @@ serverMongo.post('/inbound', (req, res) => {
     });
 });
 
-module.exports = serverMongo;
+module.exports = server;
