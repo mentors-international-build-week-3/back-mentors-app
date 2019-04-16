@@ -68,10 +68,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// @route   PUT request to 'api/mentees/:id/update'
+// @route   PUT request to 'api/mentees/update/:id'
 // @desc    Updates a specific mentee's document
 // @access  Public 
-router.put('/:id/update', (req, res) => {
+router.put('/update/:id', (req, res) => {
     Mentee
         .findById(req.params.id)
         .then((mentee, err) => {

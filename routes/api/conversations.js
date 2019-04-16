@@ -69,10 +69,10 @@ router.delete('/:id', (req, res) => {
 });
 
 
-// @route   PUT request to 'api/conversations/:id/update'
+// @route   PUT request to 'api/conversations/update/:id'
 // @desc    Updates a specific conversation's document
 // @access  Public 
-router.put('/:id/update', (req, res) => {
+router.put('/update/:id', (req, res) => {
     Conversation
         .findById(req.params.id)
         .then((conversation, err) => {
