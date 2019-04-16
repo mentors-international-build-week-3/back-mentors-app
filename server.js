@@ -1,7 +1,8 @@
-require('dotenv').config();
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 const twilio = require("twilio");
 
 
@@ -22,6 +23,7 @@ const users = require('./routes/api/users');
 const server = express();
 
 server.use(express.json());
+server.use(bodyParser.urlencoded({ extended: false }));
 server.use(cors());
 
 // configures the MongoDB with the URI
