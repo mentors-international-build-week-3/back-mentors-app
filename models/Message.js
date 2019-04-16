@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// Creates a Conversation model using Schema
-const ConversationSchema = new Schema({
+// Creates a Message model using Schema
+const MessageSchema = new Schema({
     menteeFirstName: {
         type: String
     },
@@ -28,4 +28,4 @@ const ConversationSchema = new Schema({
     }
 });
 
-module.exports = Conversation = mongoose.model('conversation', ConversationSchema);
+module.exports = Message = mongoose.model('message', MessageSchema);
