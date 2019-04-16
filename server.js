@@ -4,16 +4,20 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const twilio = require("twilio");
 
+
 // twilio credentials
 const twilioSid = require('./config/keys').accountSid;
 const twilioAuthToken = require('./config/keys').authToken;
 const client = new twilio(twilioSid, twilioAuthToken);
 
+
 // any requests that go to the '/api/mentees' endpoint will refer to this folder
 const mentees = require('./routes/api/mentees');
-
 // any requests that go to the '/api/conversations' endpoint will refer to this folder
 const conversations = require('./routes/api/conversations');
+// any requests that go to the '/api/conversations' endpoint will refer to this folder
+const users = require('./routes/api/users');
+
 
 const server = express();
 
@@ -39,7 +43,11 @@ server.use('/api/mentees', mentees);
 
 // tells the server to use the routes from the 'conversations' constant (defined above), 
 // for any requests to the '/api/conversations' endpoint
-server.use('/api/conversations', conversations); 
+server.use('/api/conversations', conversations);
+
+// tells the server to use the routes from the 'users' constant (defined above), 
+// for any requests to the '/api/users' endpoint
+server.use('/api/users', users); 
 
 
 
