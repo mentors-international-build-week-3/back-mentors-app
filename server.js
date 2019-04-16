@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const twilio = require("twilio");
 
@@ -17,6 +18,7 @@ const conversations = require('./routes/api/conversations');
 const server = express();
 
 server.use(express.json());
+server.use(cors());
 
 // configures the MongoDB with the URI
 const db = require('./config/keys').mongoURI;
