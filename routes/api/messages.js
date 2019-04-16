@@ -1,35 +1,32 @@
-const express = require('express');
-const router = express.Router();
-const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-const twilio = require("twilio");
+// const express = require('express');
+// const router = express.Router();
+// const mongoose = require("mongoose");
+// const bodyParser = require("body-parser");
+// const twilio = require("twilio");
 
-// twilio credentials
-const twilioSid = require('../../config/keys').accountSid;
-const twilioAuthToken = require('../../config/keys').authToken;
-const client = new twilio(twilioSid, twilioAuthToken);
+// // twilio credentials
+// const twilioSid = require('../../config/keys').accountSid;
+// const twilioAuthToken = require('../../config/keys').authToken;
+// const client = new twilio(twilioSid, twilioAuthToken);
 
-// Imports the Message Model (so we can query the 'messages' collection in the MongoDB)
-const Message = require('../../models/Message');
-
-router.use(express.json());
-router.use(bodyParser.urlencoded({ extended: false }));
+// // Imports the Message Model (so we can query the 'messages' collection in the MongoDB)
+// // const Message = require('../../models/Message');
 
 
-// @route   GET request to the '/api/messages' endpoint
-// @desc    Retrieves all messages from MongoDB
-// @access  Public 
-// router.get('/', (req, res) => {
-//     Message
-//         .find()
-//         .sort({ createdDate: -1 }) // sorts all retrieved messages by createdDate; "-1" = descending order, "1" = ascending order 
-//         .then(messages => {
-//             res.status(200).json(messages);
-//         })
-//         .catch(err => {
-//             res.status(500).res.json(err);
-//         });
-// });
+// // @route   GET request to the '/api/messages' endpoint
+// // @desc    Retrieves all messages from MongoDB
+// // @access  Public 
+// // router.get('/', (req, res) => {
+// //     Message
+// //         .find()
+// //         .sort({ createdDate: -1 }) // sorts all retrieved messages by createdDate; "-1" = descending order, "1" = ascending order 
+// //         .then(messages => {
+// //             res.status(200).json(messages);
+// //         })
+// //         .catch(err => {
+// //             res.status(500).res.json(err);
+// //         });
+// // });
 
 
 
@@ -42,36 +39,36 @@ router.use(bodyParser.urlencoded({ extended: false }));
 
 
 
-// @route   POST request to the '/api/messages' endpoint
-// @desc    Creates a new message document
-// @access  Public 
-router.post('/', (req, res) => {
+// // @route   POST request to the '/api/messages' endpoint
+// // @desc    Creates a new message document
+// // @access  Public 
+// router.post('/', (req, res) => {
 
-    let from = req.body.From; // refers to mentor's phone number
-    let to = req.body.To; // refers to the mentee's phone number
-    let body = req.body.Body; // refers to the BODY of the new message that is sent
+//     let from = req.body.From; // refers to mentor's phone number
+//     let to = req.body.To; // refers to the mentee's phone number
+//     let body = req.body.Body; // refers to the BODY of the new message that is sent
   
-    Message.find({ phoneNumber: req.body.From }, (err, message) => {
-        console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
-        console.log(body);
+//     Message.find({ phoneNumber: req.body.From }, (err, message) => {
+//         console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
+//         console.log(body);
     
-        if (message.length !== 0) {
+//         if (message.length !== 0) {
 
-        } else {
-            if (body === 'RSVP') {
-                let newMessage = new Message();
-                newMessage.phoneNumber = from;
-                newMessage.save(() => {
-                    client.messages.create({
-                        to: `${from}`,
-                        from: `${to}`,
-                        body: 'What is your group name?'
-                    });
-                });
-            } else {
-                res.end();
-            }
-        }
+//         } else {
+//             if (body === 'RSVP') {
+//                 let newMessage = new Message();
+//                 newMessage.phoneNumber = from;
+//                 newMessage.save(() => {
+//                     client.messages.create({
+//                         to: `${from}`,
+//                         from: `${to}`,
+//                         body: 'What is your group name?'
+//                     });
+//                 });
+//             } else {
+//                 res.end();
+//             }
+//         }
         //     // continue conversation
         // } else {
         //   if (body === "RSVP") {
@@ -91,9 +88,9 @@ router.post('/', (req, res) => {
         //       return "Something went wrong";
         //   }
         // }
-        res.end();
-    });
-});
+//         res.end();
+//     });
+// });
 
 
 
@@ -161,4 +158,4 @@ router.post('/', (req, res) => {
 // });
 
 
-module.exports = router;
+// module.exports = router;
