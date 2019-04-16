@@ -1,17 +1,17 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-
-// Twilio-related dependencies
 const twilio = require("twilio");
+
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const mongoPassword = process.env.MONGO_USER_PASSWORD;
 const client = new twilio(accountSid, authToken);
 
 const server = express();
 
 server.use(express.json());
+
+const db = require('./config/keys').mongoURI;
 
 let MessageSchema = new mongoose.Schema({
   phoneNumber: String,
@@ -22,18 +22,18 @@ let MessageSchema = new mongoose.Schema({
 
 let Message = mongoose.model("Message", MessageSchema);
 
+// connect to MongoDB
 mongoose
-  .connect(
-    `mongodb+srv://ticotheps:${mongoPassword}@mentors-db-hokei.mongodb.net/test?retryWrites=true`,
-    { useNewUrlParser: true }
-  )
-  .then(() => {
-    console.log("The MongoDB is connected!");
-  })
-  .catch(error => {
-    console.log(error);
-  });
+    .connect(db, { useNewUrlParser: true })
+    .then(() => {
+        console.log('The MongoDB is connected!');
+    })
+    .catch(err => {
+        console.log(err)
+    });
 
+
+    
 server.get("/", (req, res) => {
   res.end();
 });
