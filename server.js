@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 const twilio = require("twilio");
 
 
@@ -25,6 +26,7 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 server.use(bodyParser.urlencoded({ extended: false }));
+server.use(bodyParser.json());
 
 // configures the MongoDB with the URI
 const db = require('./config/keys').mongoURI;
@@ -33,22 +35,25 @@ const db = require('./config/keys').mongoURI;
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => {
-        console.log('The MongoDB is connected in server.js!');
+        console.log('The MongoDB is successfully connected with server.js!');
     })
     .catch(err => {
         console.log(err)
     });
 
-// tells the server to use the routes from the 'mentees' constant (defined above), 
-// for any requests to the '/api/mentees' endpoint
+// Passport middleware
+server.use(passport.initialize());
+
+// Passport configuration
+require("./config/passport")(passport);
+
+// route for the '/api/mentees' endpoint
 server.use('/api/mentees', mentees); 
 
-// tells the server to use the routes from the 'conversations' constant (defined above), 
-// for any requests to the '/' endpoint
+// route for the '/api/messages' endpoint
 server.use('/api/messages', messages);
 
-// tells the server to use the routes from the 'users' constant (defined above), 
-// for any requests to the '/api/users' endpoint
+// route for the '/api/users' endpoint
 server.use('/api/users', users); 
 
 

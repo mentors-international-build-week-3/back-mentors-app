@@ -24,7 +24,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log("The MongoDB is connected in messages.js!");
+    console.log("The MongoDB is successfully connected with messages.js!");
   })
   .catch(err => {
     console.log(err);
