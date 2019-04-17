@@ -1,7 +1,16 @@
 const express = require('express');
 const router = express.Router();
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const keys = require("../../config/keys");
 
-// Imports the User Model (so we can query the 'users' collection in the MongoDB)
+
+// imports input validation
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+
+
+// imports the User Model (so we can query the 'users' collection in the MongoDB)
 const User = require('../../models/User');
 
 
