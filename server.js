@@ -205,11 +205,15 @@ server.post('/api/messages', (req, res) => {
                     res.end();
                 })
             } else {
+
+                let newMessage = new Message();
+                newMessage.phoneNumber = menteeNumber;
+
                 newMessage.save(() => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Sorry, that wasn't a valid keyword. Try again, but reply with "RSVP" this time! :)`
+                        body: `Sorry, that's not the magic word. Lucky for you, I'm a magician! ;) Try again, but reply with "RSVP" this time!`
                     })
 
                     res.end();
