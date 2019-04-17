@@ -190,7 +190,7 @@ server.post('/api/messages', (req, res) => {
             }
         } else {
 
-            if (smsBody === 'RSVP') {
+            if (smsBody === 'RSVP' || smsBody === 'Rsvp' || smsBody === 'rsvp') {
 
                 let newMessage = new Message();
                 newMessage.phoneNumber = menteeNumber;
