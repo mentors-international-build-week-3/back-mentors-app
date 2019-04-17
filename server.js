@@ -26,12 +26,6 @@ let MessageSchema = new mongoose.Schema({
     attending: {
         type: String
     },
-    noAttendReason: {
-        type: String
-    },
-    needBooks: {
-        type: String
-    },
     createdDate:{
         type: Date,
         default: Date.now
@@ -102,17 +96,72 @@ server.post('/api/messages', (req, res) => {
         console.log(message, smsBody);
 
         if (message.length !==0) {
-            // continue conversation
+
+            if (!message[0].menteeFirstName && !message[0].menteeLastName && !message[0].attending) {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeFirstName": body}}, {"new": true, "upsert": true}, () => {
+                    client.messages.create({
+                        to: `${menteeNumber}`,
+                        from: `${appNumber}`,
+                        body: `Great! And how about your last name?`
+                    })
+
+                    res.end();
+                })
+            } else if (!message[0].menteeLastName && !message[0].attending) {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeLastName": body}}, {"new": true, "upsert": true}, () => {
+                    client.messages.create({
+                        to: `${menteeNumber}`,
+                        from: `${appNumber}`,
+                        body: `Awesome, ${menteeFirstName}! Last question: Do you plan on attending your next mentor session? Please reply "y" for YES or "n" for NO.`
+                    })
+
+                    res.end();
+                })
+            } else if (!message[0].attending) {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": body}}, {"new": true, "upsert": true}, () => {
+                    if ((body === "y") || (body === "Y") || (body === "n") || (body === "N")) {
+                        if ((body === "y") || (body === "Y")) {
+                            client.messages.create({
+                                to: `${menteeNumber}`,
+                                from: `${appNumber}`,
+                                body: `Perfect, ${menteeFirstName}! We'll save your spot for you! Have an awesome day!`
+                            })
+        
+                            res.end();
+                        } else if ((body === "n") || (body === "N")) {
+                            client.messages.create({
+                                to: `${menteeNumber}`,
+                                from: `${appNumber}`,
+                                body: `Oh no! We're sorry to hear won't you be able to join us, ${menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                            })
+        
+                            res.end();
+                        }
+                    } else {
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `I'm sorry, ${menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "y" for YES or "n" for NO.`
+                        })
+    
+                        res.end();
+                    }
+                })
+            }
         } else {
+
             if (smsBody === 'RSVP') {
+
                 let newMessage = new Message();
                 newMessage.phoneNumber = menteeNumber;
+
                 newMessage.save(() => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
                         body: `Hi! Your number wasn't recognized in our database. What is your first name?`
                     })
+
                     res.end();
                 })
             }
