@@ -204,6 +204,16 @@ server.post('/api/messages', (req, res) => {
 
                     res.end();
                 })
+            } else {
+                newMessage.save(() => {
+                    client.messages.create({
+                        to: `${menteeNumber}`,
+                        from: `${appNumber}`,
+                        body: `Sorry, that wasn't a valid keyword. Try again, but reply with "RSVP" this time! :)`
+                    })
+
+                    res.end();
+                })
             }
         }
 
