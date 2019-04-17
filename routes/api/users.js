@@ -28,8 +28,9 @@ router.post('/', (req, res) => {
     // 'new' refers to the creation of a new instance of the 'User' model from User.js
     // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
     const newUser = new User({
-        userame: req.body.username,
+        username: req.body.username,
         password: req.body.password,
+        password2: req.body.password2,
         userFirstName: req.body.userFirstName,
         userLastName: req.body.userLastName,
         userType: req.body.userType,
