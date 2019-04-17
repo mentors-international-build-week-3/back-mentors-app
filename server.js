@@ -102,7 +102,7 @@ server.post('/api/messages', (req, res) => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Great! And how about your last name?`
+                        body: `Great! And how about your last name, ${smsBody}?`
                     })
 
                     res.end();
@@ -115,7 +115,7 @@ server.post('/api/messages', (req, res) => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Awesome, ${message[0].menteeFirstName}! Last question: Do you plan on attending your next mentor session? Please reply "y" for YES or "n" for NO.`
+                        body: `Awesome, ${message[0].menteeFirstName}! Last question: Do you plan on attending your next mentor session with us? Please reply "1" for YES or "0" (zero) for NO.`
                     })
 
                     res.end();
@@ -125,29 +125,60 @@ server.post('/api/messages', (req, res) => {
                 });
             } else if (!message[0].attending) {
                 Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
-                    if ((smsBody === "y") || (smsBody === "Y") || (smsBody === "n") || (smsBody === "N")) {
-                        if ((smsBody === "y") || (smsBody === "Y")) {
-                            client.messages.create({
-                                to: `${menteeNumber}`,
-                                from: `${appNumber}`,
-                                body: `Perfect, ${message[0].menteeFirstName}! We'll save your spot for you! Have an awesome day!`
-                            })
+                    if (smsBody === "1") {
+
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `Perfect, ${message[0].menteeFirstName}! We'll save a spot for you! Thanks for your time and have an awesome day!`
+                        })
         
-                            res.end();
-                        } else if ((smsBody === "n") || (smsBody === "N")) {
-                            client.messages.create({
-                                to: `${menteeNumber}`,
-                                from: `${appNumber}`,
-                                body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
-                            })
+                        res.end();
+                    } else if (smsBody === "0") {
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                        })
         
-                            res.end();
-                        }
+                        res.end();
                     } else {
                         client.messages.create({
                             to: `${menteeNumber}`,
                             from: `${appNumber}`,
-                            body: `I'm sorry, ${message[0].menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "y" for YES or "n" for NO.`
+                            body: `I'm sorry, ${message[0].menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "1" for YES or "0" (zero) for NO.`
+                        })
+    
+                        res.end();
+                    }
+                })
+                .catch(err => {
+                    res.status(500).json(err);
+                });
+            } else if (!message[0].attending) {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                    if (smsBody === "1") {
+
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `Perfect, ${message[0].menteeFirstName}! We'll save a spot for you! Have an awesome day!`
+                        })
+        
+                        res.end();
+                    } else if (smsBody === "0") {
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                        })
+        
+                        res.end();
+                    } else {
+                        client.messages.create({
+                            to: `${menteeNumber}`,
+                            from: `${appNumber}`,
+                            body: `I'm sorry, ${message[0].menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "1" for YES or "0" (zero) for NO.`
                         })
     
                         res.end();
