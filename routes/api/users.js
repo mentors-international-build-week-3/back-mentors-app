@@ -47,7 +47,6 @@ router.post('/register', (req, res) => {
         email: req.body.email,
     }); 
 
-     
     newUser
         .save() // saves the new user object as a new document in our MongoDB
         .then(user => {
