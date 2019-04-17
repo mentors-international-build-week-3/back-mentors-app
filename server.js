@@ -98,7 +98,6 @@ server.post('/api/messages', (req, res) => {
     let to = req.body.To; // refers to the mentee's phone number
     let body = req.body.Body; // refers to the BODY of the new message that is sent
 
-
     Message
         .findById(req.params.id)
         .then(message => {

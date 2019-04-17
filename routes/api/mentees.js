@@ -60,11 +60,11 @@ router.delete('/:id', (req, res) => {
                     res.status(202).json({ delete_success: true });
                 })
                 .catch(err => {
-                    res.status(404).json({ error_message: "Mentee was not deleted because this mentee could not be found"});
+                    res.status(404).json({ error_message: "Something went wrong while trying to delete this mentee from the database" });
                 });
         })
         .catch(err => {
-            res.status(500).json({ error_message: "Something went wrong while trying to delete this mentee from the database"});
+            res.status(500).json({ error_message: "Mentee was not deleted because this mentee could not be found in the database" });
         });
 });
 
