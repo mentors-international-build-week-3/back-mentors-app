@@ -6,7 +6,7 @@ const keys = require("../../config/keys");
 
 
 // imports input validation
-const validateRegisterInput = require('../../validation/register');
+const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
 
 
@@ -30,10 +30,10 @@ router.get('/', (req, res) => {
 });
 
 
-// @route   POST request to the '/api/users' endpoint
+// @route   POST request to the '/api/users/signup' endpoint
 // @desc    Creates a new user document
 // @access  Public 
-router.post('/register', (req, res) => {
+router.post('/signup', (req, res) => {
     // 'new' refers to the creation of a new instance of the 'User' model from User.js
     // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
     const newUser = new User({
