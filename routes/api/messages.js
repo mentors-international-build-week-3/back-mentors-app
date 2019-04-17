@@ -188,7 +188,7 @@ router.delete('/:id', (req, res) => {
                     res.status(202).json({ delete_success: true });
                 })
                 .catch(err => {
-                    res.status(404).json({ error_message: "Message was not deleted because this message could not be found"});
+                    res.status(404).json({ delete_status: "Message was not deleted because this message could not be found"});
                 });
         })
         .catch(err => {
