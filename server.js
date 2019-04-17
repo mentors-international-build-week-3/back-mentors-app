@@ -93,7 +93,7 @@ server.post('/api/messages', (req, res) => {
     let smsBody = req.body.Body; // refers to the BODY of the new message that is sent
 
     Message.find({phoneNumber: menteeNumber}, (err, message) => {
-        console.log(message, smsBody);
+        console.log(smsBody);
 
         if (message.length !==0) {
 
@@ -138,7 +138,7 @@ server.post('/api/messages', (req, res) => {
                         client.messages.create({
                             to: `${menteeNumber}`,
                             from: `${appNumber}`,
-                            body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                            body: `Oh no! We're sorry to hear that you won't be joining us, ${message[0].menteeFirstName}. Don't worry! We'll notify your mentor, ASAP, to reschedule another mentor session for you! :)`
                         })
         
                         res.end();
@@ -170,7 +170,7 @@ server.post('/api/messages', (req, res) => {
                         client.messages.create({
                             to: `${menteeNumber}`,
                             from: `${appNumber}`,
-                            body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                            body: `Oh no! We're sorry to hear that you won't be joining us, ${message[0].menteeFirstName}. Don't worry! We'll notify your mentor, ASAP, to reschedule another mentor session for you! :)`
                         })
         
                         res.end();
@@ -178,7 +178,7 @@ server.post('/api/messages', (req, res) => {
                         client.messages.create({
                             to: `${menteeNumber}`,
                             from: `${appNumber}`,
-                            body: `I'm sorry, ${message[0].menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "1" for YES or "0" (zero) for NO.`
+                            body: `I'm sorry, ${message[0].menteeFirstName}, you've exhaused the maximum number of attempts to answer this question. Please text "RSVP" to this number again to get access to more attempts! Thanks!`
                         })
     
                         res.end();
@@ -212,30 +212,6 @@ server.post('/api/messages', (req, res) => {
     .catch(err => {
         res.status(500).json(err);
     });
-
-
-    // if (!menteeNumberMatch) {
-    //     console.log("Sorry, no matching phone number was found in the database...womp womp.");
-
-    //     client.messages.create({
-    //         to: `${menteeNumber}`,
-    //         from: `${appNumber}`,
-    //         body: "Your phone number is not in our database, but we can save it if you'd like!"
-    //     });
-
-    //     res.status(404).json({ error_message: "No matching message was found"});
-    // } else {
-    //     console.log("Matching phone number was found in the database!!!");
-    //     console.log(menteeNumberMatch);
-
-    //     client.messages.create({
-    //         to: `${menteeNumber}`,
-    //         from: `${appNumber}`,
-    //         body: "We recognized your phone number in our database! Awesome!"
-    //     });
-
-    //     res.status(200).json({ match: true });
-    // }
 });
 
 // tells the server to use the routes from the 'conversations' constant (defined above), 
