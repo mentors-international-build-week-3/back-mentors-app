@@ -86,7 +86,7 @@ server.get('/api/messages', (req, res) => {
 // @route   POST request to the '/api/messages' endpoint
 // @desc    Creates a new message document
 // @access  Public 
-server.post('/api/messages', (req, res) => {
+server.post('/api/messages', async (req, res) => {
 
     let menteeNumber = req.body.From; // refers to mentee's phone number
     let appNumber = req.body.To; // refers to the app's phone number
@@ -98,7 +98,7 @@ server.post('/api/messages', (req, res) => {
         if (message.length !==0) {
 
             if (!message[0].menteeFirstName && !message[0].menteeLastName && !message[0].attending) {
-                Message.findOneAndUpdate(message[0]._id, {"$set": {"menteeFirstName": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeFirstName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
@@ -111,7 +111,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].menteeLastName && !message[0].attending) {
-                Message.findOneAndUpdate(message[0]._id, {"$set": {"menteeLastName": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeLastName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
@@ -124,7 +124,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].attending) {
-                Message.findOneAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
                     if (smsBody === "1") {
 
                         client.messages.create({
@@ -156,7 +156,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].attending) {
-                Message.findOneAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
                     if (smsBody === "1") {
 
                         client.messages.create({
@@ -204,7 +204,8 @@ server.post('/api/messages', (req, res) => {
     
                     res.end();
                 })
-    
+
+                res.end();
             }
         }
     })
