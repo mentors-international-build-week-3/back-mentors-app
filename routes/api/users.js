@@ -55,7 +55,6 @@ router.post('/signup', (req, res) => {
         const newUser = new User({
             username: req.body.username,
             password: req.body.password,
-            password2: req.body.password2,
             userFirstName: req.body.userFirstName,
             userLastName: req.body.userLastName,
             userType: req.body.userType,
@@ -114,7 +113,6 @@ router.put('/:id', (req, res) => {
 
                 (req.body.username) ? user.username = req.body.username : null;
                 (req.body.password) ? user.password = req.body.password : null;
-                (req.body.password2) ? user.password2 = req.body.password2 : null;
                 (req.body.userFirstName) ? user.userFirstName = req.body.userFirstName : null;
                 (req.body.userLastName) ? user.userLastName = req.body.userLastName : null;
                 (req.body.userType) ? user.userType = req.body.userType : null;
