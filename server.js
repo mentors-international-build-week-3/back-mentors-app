@@ -77,8 +77,16 @@ server.use('/api/mentees', mentees);
 server.use('/api/users', users); 
 
 
-server.get('/', (req, res) => {
-    res.end();
+server.get('/api/messages', (req, res) => {
+    Message
+        .find()
+        .sort({ createdDate: -1 }) // sorts all retrieved messages by createdDate; "-1" = descending order, "1" = ascending order 
+        .then(messages => {
+            res.status(200).json(messages);
+        })
+        .catch(err => {
+            res.status(500).res.json(err);
+        });
 });
 
 // @route   POST request to the '/api/messages' endpoint
@@ -89,49 +97,74 @@ server.post('/api/messages', (req, res) => {
     let from = req.body.From; // refers to mentor's phone number
     let to = req.body.To; // refers to the mentee's phone number
     let body = req.body.Body; // refers to the BODY of the new message that is sent
-  
-    Message.find({ phoneNumber: req.body.From }, (err, message) => {
-        console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
-        console.log(body);
-    
-        if (message.length !== 0) {
-            // continue conversation
-        } else {
-            if (body === 'RSVP') {
-                let newMessage = new Message();
-                newMessage.phoneNumber = from;
-                newMessage.save(() => {
-                    client.messages.create({
-                        to: `${from}`,
-                        from: `${to}`,
-                        body: 'What is your group name?'
-                    });
+
+
+    Message
+        .findById(req.params.id)
+        .then(message => {
+            console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
+            console.log(body);
+
+            let newMessage = new Message({
+                phoneNumber: req.body.From,
+            }); 
+
+            newMessage
+                .save() // saves the new message object as a new document in our MongoDB
+                .then(message => {
+                    res.json(message);
+                })
+                .catch(err => {
+                    res.json(err);
                 });
-            } else {
-                res.end();
-            }
-        }
-        //     // continue conversation
-        // } else {
-        //   if (body === "RSVP") {
-        //     let newMessage = new Message();
-        //     newMessage.phoneNumber = from;
-        //     newMessage.save(() => {
-        //       client.messages.create({
-        //         // this creates a new return message to send BACK to the mentee
-        //         to: `${from}`, // 'from' refers to the mentee's phone number in the return message
-        //         from: `${to}`, // 'to' refers to the mentor's phone number in the return message
-        //         body: "Hi! What's your name?"
-        //       })
+
+            client.messages.create({
+                to: `${req.body.From}`,
+                from: `${req.body.To}`,
+                body: 'We just saved your number to the database!'
+            });
+        })
+        .catch(err => {
+            client.messages.create({
+                to: `${from}`,
+                from: `${to}`,
+                body: "Sorry! We couldn't save your number in the DB!"
+            });
+
+            res.status(404).json({ error_message: "No matching message was found"});
+        });
+
+
+
+
+
+
+    // Message.find({ phoneNumber: req.body.From }, (err, message) => {
+    //     console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
+    //     console.log(body);
     
-        //       res.end();
-        //     });
-        //   } else {
-        //       return "Something went wrong";
-        //   }
-        // }
-        res.end();
-    });
+    //     if (message.length !== 0) {
+    //         // continue conversation
+    //     } else {
+    //         if (body === 'RSVP') {
+    //             let newMessage = new Message();
+    //             newMessage.phoneNumber = from;
+    //             newMessage.save(() => {
+    //                 client.messages.create({
+    //                     to: `${from}`,
+    //                     from: `${to}`,
+    //                     body: 'What is your group name?'
+    //                 });
+    //             });
+    //         } else {
+    //             res.end();
+    //         }
+    //     }
+    //     res.end();
+    // })
+    // .catch(err => {
+    //     res.status(404).json({ error_message: "Couldn't find a matching message" });
+    // });
 });
 
 // tells the server to use the routes from the 'conversations' constant (defined above), 
