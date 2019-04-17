@@ -6,7 +6,7 @@ const keys = require("../../config/keys");
 
 
 // imports input validation
-const validateRegisterInput = require('../../validation/register');
+const validateSignupInput = require('../../validation/signup');
 const validateLoginInput = require('../../validation/login');
 
 
@@ -30,31 +30,50 @@ router.get('/', (req, res) => {
 });
 
 
-// @route   POST request to the '/api/users' endpoint
+// @route   POST request to the '/api/users/signup' endpoint
 // @desc    Creates a new user document
 // @access  Public 
-router.post('/register', (req, res) => {
-    // 'new' refers to the creation of a new instance of the 'User' model from User.js
-    // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
-    const newUser = new User({
-        username: req.body.username,
-        password: req.body.password,
-        password2: req.body.password2,
-        userFirstName: req.body.userFirstName,
-        userLastName: req.body.userLastName,
-        userType: req.body.userType,
-        phoneNumber: req.body.phoneNumber,
-        email: req.body.email,
-    }); 
+router.post('/signup', (req, res) => {
+    // validates form input
+    const { errors, isValid } = validateSignupInput(req.body);
 
-    newUser
-        .save() // saves the new user object as a new document in our MongoDB
+    // checks validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    User
+        .findOne({ email: req.body.email })
         .then(user => {
-            res.json(user);
-        })
-        .catch(err => {
-            res.json(err);
+        if (user) {
+            return res.status(400).json({ email: "Email already exists" });
+        }
+
+        // 'new' refers to the creation of a new instance of the 'User' model from User.js
+        // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
+        const newUser = new User({
+            username: req.body.username,
+            password: req.body.password,
+            password2: req.body.password2,
+            userFirstName: req.body.userFirstName,
+            userLastName: req.body.userLastName,
+            userType: req.body.userType,
+            phoneNumber: req.body.phoneNumber,
+            email: req.body.email,
         });
+
+        // hashes password before saving in database
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
+                newUser
+                    .save()
+                    .then(user => res.json(user))
+                    .catch(err => console.log(err));
+            });
+        });   
+    }); 
 });
 
 
