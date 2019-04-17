@@ -12,7 +12,6 @@ class Landing extends Component {
               <span style={{ fontFamily: "monospace" }}>MERN</span> stack from
               scratch
             </h4>
-            <Icon>star</Icon>
             <p className="flow-text grey-text text-darken-1">
               Create a (minimal) full-stack app with user authentication via
               passport and JWTs
@@ -26,7 +25,7 @@ class Landing extends Component {
               }}
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
-              Register
+              Sign Up
             </a>
             <a
               style={{
