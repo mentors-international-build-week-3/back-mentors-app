@@ -62,11 +62,11 @@ router.delete('/:id', (req, res) => {
                     res.status(202).json({ delete_success: true });
                 })
                 .catch(err => {
-                    res.status(404).json({ error_message: "User was not deleted because the user could not be found"});
+                    res.status(404).json({ error_message: "Something went wrong while trying to delete this user from the database" });
                 });
         })
         .catch(err => {
-            res.status(500).json({ error_message: "Something went wrong while trying to delete this user from the database"});
+            res.status(500).json({ error_message: "User was not deleted because this user could not be found in the database" });
         });
 });
 
