@@ -77,6 +77,54 @@ router.post('/signup', (req, res) => {
 });
 
 
+// @route 	POST requst to the 'api/users/login' endpoint
+// @desc 	Logs user in and returns JWT token
+// @access 	Public
+	router.post('/login', (req, res) => {
+		// Form validation
+		const { errors, isValid } = validateLoginInput(req.body);
+	
+		// Check validation
+		if (!isValid) {
+			return res.status(400).json(errors);
+		}
+		
+		const email = req.body.email;
+		const password = req.body.password;
+
+		// Find user by email
+		User
+			.findOne({ email })
+			.then(user => {
+				// Checks if user exists
+				if (!user) {
+					return res.status(404).json({ emailnotfound: "Email not found" });
+				}
+
+				// Checks user's input hash against hash in the MongoDB
+				bcrypt
+					.compare(password, user.password)
+					.then(isMatch => {
+						if (isMatch) {	
+							// User matches
+							// Creates a JWT Payload
+							const payload = {
+								id: user.id,
+								name: user.name
+							};
+
+							// Signs the token
+							jwt.sign(payload, keys.secretOrKey, {expiresIn: 21600}, (err, token) => { // 21,600 sec => 6 hours
+								res.json({ success: true, token: "Bearer " + token });
+							});
+						} else {
+							return res.status(400).json({ passwordincorrect: "Password incorrect" });
+						}
+					});
+			});
+	});
+
+
 // @route   DELETE request to the 'api/users/:id' endpoint
 // @desc    Deletes a specific user
 // @access  Public 
