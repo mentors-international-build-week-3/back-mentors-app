@@ -33,7 +33,7 @@ module.exports = function validateSignupInput(data) {
         errors.password = "Password must be at least 8 characters";
     }
 
-    if (Validator.equals(data.password, data.password2)) {
+    if (!Validator.equals(data.password, data.password2)) {
         errors.password2 = "Passwords must match";
     }
 
