@@ -98,7 +98,7 @@ server.post('/api/messages', (req, res) => {
         if (message.length !==0) {
 
             if (!message[0].menteeFirstName && !message[0].menteeLastName && !message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeFirstName": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findOneAndUpdate(message[0]._id, {"$set": {"menteeFirstName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
@@ -111,7 +111,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].menteeLastName && !message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeLastName": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findOneAndUpdate(message[0]._id, {"$set": {"menteeLastName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
@@ -124,7 +124,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findOneAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
                     if (smsBody === "1") {
 
                         client.messages.create({
@@ -156,7 +156,7 @@ server.post('/api/messages', (req, res) => {
                     res.status(500).json(err);
                 });
             } else if (!message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                Message.findOneAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
                     if (smsBody === "1") {
 
                         client.messages.create({
@@ -190,38 +190,23 @@ server.post('/api/messages', (req, res) => {
             }
         } else {
 
-            if (smsBody === 'RSVP' || smsBody === 'Rsvp' || smsBody === 'rsvp') {
+            if ((smsBody === 'RSVP') ||(smsBody === 'rsvp') || (smsBody === 'Rsvp')) {
 
                 let newMessage = new Message();
                 newMessage.phoneNumber = menteeNumber;
-
+    
                 newMessage.save(() => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Hi! Your phone number wasn't recognized in our database. What's your first name?`
+                        body: `Hi! Your phone number wasn't recognized by our database. What's your first name?`
                     })
-
+    
                     res.end();
                 })
-            } else {
-
-                let newMessage = new Message();
-                newMessage.phoneNumber = menteeNumber;
-
-                newMessage.save(() => {
-                    client.messages.create({
-                        to: `${menteeNumber}`,
-                        from: `${appNumber}`,
-                        body: `Sorry, that's not the magic word. Lucky for you, I'm a magician! ;) Try again, but reply with "RSVP" this time!`
-                    })
-
-                    res.end();
-                })
+    
             }
         }
-
-        res.end();
     })
     .catch(err => {
         res.status(500).json(err);
