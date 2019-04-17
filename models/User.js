@@ -4,36 +4,29 @@ const Schema = mongoose.Schema;
 
 // Creates a User model using Schema
 const UserSchema = new Schema({
+    email: {
+        type: String
+    },
     username: {
-        type: String,
-        require: true
+        type: String
     },
     password: {
-        type: String,
-        require: true
+        type: String
     },
     password2: {
         type: String
     },
     userFirstName: {
-        type: String,
-        require: true
+        type: String
     },
     userLastName: {
-        type: String,
-        require: true
+        type: String
     },
     userType: {
-        type: String,
-        require: true
+        type: String
     },
     phoneNumber: {
-        type: String,
-        require: true
-    },
-    email: {
-        type: String,
-        require: true
+        type: String
     },
     createdDate:{
         type: Date,

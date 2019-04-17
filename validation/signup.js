@@ -6,6 +6,7 @@ module.exports = function validateSignupInput(data) {
     let errors = {};
 
     // converts empty fields to an empty string so we can run validator
+    data.email = !isEmpty(data.email) ? data.email : "";
     data.username = !isEmpty(data.username) ? data.username : "";
     data.password = !isEmpty(data.password) ? data.password : "";
     data.password2 = !isEmpty(data.password2) ? data.password2 : "";
@@ -13,7 +14,14 @@ module.exports = function validateSignupInput(data) {
     data.userLastName = !isEmpty(data.userLastName) ? data.userLastName : "";
     data.userType = !isEmpty(data.userType) ? data.userType : "";
     data.phoneNumber = !isEmpty(data.phoneNumber) ? data.phoneNumber : "";
-    data.email = !isEmpty(data.email) ? data.email : "";
+
+    
+    // checks email field
+    if (Validator.isEmpty(data.email)) {
+        errors.email = "Email field is required";
+    } else if (!Validator.isEmail(data.email)) {
+        errors.email = "Email is invalid";
+    }  
 
     // checks username field
     if (Validator.isEmpty(data.username)) {
@@ -55,14 +63,7 @@ module.exports = function validateSignupInput(data) {
     // checks phoneNumber field
     if (Validator.isEmpty(data.phoneNumber)) {
         errors.phoneNumber = "Phone number field is required";
-    }
-
-    // checks email field
-    if (Validator.isEmpty(data.email)) {
-        errors.email = "Email field is required";
-    } else if (!Validator.isEmail(data.email)) {
-        errors.email = "Email is invalid";
-    }    
+    }  
 
     return {
         errors,

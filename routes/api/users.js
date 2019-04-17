@@ -53,13 +53,13 @@ router.post('/signup', (req, res) => {
         // 'new' refers to the creation of a new instance of the 'User' model from User.js
         // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
         const newUser = new User({
+			email: req.body.email,
             username: req.body.username,
             password: req.body.password,
             userFirstName: req.body.userFirstName,
             userLastName: req.body.userLastName,
             userType: req.body.userType,
-            phoneNumber: req.body.phoneNumber,
-            email: req.body.email,
+            phoneNumber: req.body.phoneNumber
         });
 
         // hashes password before saving in database
@@ -159,14 +159,14 @@ router.put('/:id', (req, res) => {
                 res.status(404).json({ message: "User was not updated because this user could not be found" });
             } else {
 
+				(req.body.email) ? user.email = req.body.email : null;
                 (req.body.username) ? user.username = req.body.username : null;
                 (req.body.password) ? user.password = req.body.password : null;
                 (req.body.userFirstName) ? user.userFirstName = req.body.userFirstName : null;
                 (req.body.userLastName) ? user.userLastName = req.body.userLastName : null;
                 (req.body.userType) ? user.userType = req.body.userType : null;
                 (req.body.phoneNumber) ? user.phoneNumber = req.body.phoneNumber : null;
-                (req.body.email) ? user.email = req.body.email : null;
-
+                
                 user
                     .save()
                     .then(user => {
