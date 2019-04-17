@@ -77,7 +77,7 @@ server.use('/api/mentees', mentees);
 server.use('/api/users', users); 
 
 
-server.get('/api/messages', async (req, res) => {
+server.get('/api/messages', (req, res) => {
     Message
         .find()
         .sort({ createdDate: -1 }) // sorts all retrieved messages by createdDate; "-1" = descending order, "1" = ascending order 
@@ -92,107 +92,58 @@ server.get('/api/messages', async (req, res) => {
 // @route   POST request to the '/api/messages' endpoint
 // @desc    Creates a new message document
 // @access  Public 
-server.post('/api/messages', async (req, res) => {
+server.post('/api/messages', (req, res) => {
 
     let menteeNumber = req.body.From; // refers to mentee's phone number
     let appNumber = req.body.To; // refers to the app's phone number
     let smsBody = req.body.Body; // refers to the BODY of the new message that is sent
 
-    let menteeNumberMatch = Message.collection.findOne({ phoneNumber: menteeNumber });
+    Message.find({phoneNumber: menteeNumber}, (err, message) => {
+        console.log(message, smsBody);
 
-    if (!menteeNumberMatch) {
-        console.log("Sorry, no matching phone number was found in the database...womp womp.");
+        if (message.length !==0) {
+            // continue conversation
+        } else {
+            if (smsBody === 'RSVP') {
+                let newMessage = new Message();
+                newMessage.phoneNumber = menteeNumber;
+                newMessage.save(() => {
+                    client.messages.create({
+                        to: `${menteeNumber}`,
+                        from: `${appNumber}`,
+                        body: `Hi! Your number wasn't recognized in our database. What is your first name?`
+                    })
+                    res.end();
+                })
+            }
+        }
 
-        client.messages.create({
-            to: `${menteeNumber}`,
-            from: `${appNumber}`,
-            body: "Your phone number is not in our database, but we can save it if you'd like!"
-        });
+        res.end();
+    });
 
-        res.status(404).json({ error_message: "No matching message was found"});
-    } else {
-        console.log("Matching phone number was found in the database!!!");
-        console.log(menteeNumberMatch);
 
-        client.messages.create({
-            to: `${menteeNumber}`,
-            from: `${appNumber}`,
-            body: "We recognized your phone number in our database! Awesome!"
-        });
+    // if (!menteeNumberMatch) {
+    //     console.log("Sorry, no matching phone number was found in the database...womp womp.");
 
-        res.status(200).json({ match: true });
-    }
-
-    // Message
-    //     .find({ phoneNumber: req.body.From })
-    //     .then(message => {
-    //         console.log("Matching phone number was found in the database!");
-    //         console.log(req.body);
-
-    //         // let newMessage = new Message({
-    //         //     phoneNumber: req.body.From,
-    //         // }); 
-
-    //         // newMessage
-    //         //     .save() // saves the new message object as a new document in our MongoDB
-    //         //     .then(message => {
-    //         //         res.json(message);
-    //         //     })
-    //         //     .catch(err => {
-    //         //         res.json(err);
-    //         //     });
-
-    //         client.messages.create({
-    //             to: `${req.body.From}`,
-    //             from: `${req.body.To}`,
-    //             body: 'We just saved your number to the database!'
-    //         });
-
-    //         res.status(200).json({ match: true });
-    //     })
-    //     .catch(err => {
-    //         console.log("NO matching phone number was found in the database...womp womp.");
-
-    //         client.messages.create({
-    //             to: `${from}`,
-    //             from: `${to}`,
-    //             body: "Sorry! We couldn't save your number in the DB!"
-    //         });
-
-    //         res.status(404).json({ error_message: "No matching message was found"});
+    //     client.messages.create({
+    //         to: `${menteeNumber}`,
+    //         from: `${appNumber}`,
+    //         body: "Your phone number is not in our database, but we can save it if you'd like!"
     //     });
 
+    //     res.status(404).json({ error_message: "No matching message was found"});
+    // } else {
+    //     console.log("Matching phone number was found in the database!!!");
+    //     console.log(menteeNumberMatch);
 
+    //     client.messages.create({
+    //         to: `${menteeNumber}`,
+    //         from: `${appNumber}`,
+    //         body: "We recognized your phone number in our database! Awesome!"
+    //     });
 
-
-
-
-    // Message.find({ phoneNumber: req.body.From }, (err, message) => {
-    //     console.log("The ngrok URL received the message and forwarded it to our localhost with a webhook!");
-    //     console.log(body);
-    
-    //     if (message.length !== 0) {
-    //         // continue conversation
-    //     } else {
-    //         if (body === 'RSVP') {
-    //             let newMessage = new Message();
-    //             newMessage.phoneNumber = from;
-    //             newMessage.save(() => {
-    //                 client.messages.create({
-    //                     to: `${from}`,
-    //                     from: `${to}`,
-    //                     body: 'What is your group name?'
-    //                 });
-    //             });
-    //         } else {
-    //             res.end();
-    //         }
-    //     }
-    //     res.end();
-    // })
-    // .catch(err => {
-    //     res.status(404).json({ error_message: "Couldn't find a matching message" });
-    // });
+    //     res.status(200).json({ match: true });
+    // }
 });
 
 // tells the server to use the routes from the 'conversations' constant (defined above), 
