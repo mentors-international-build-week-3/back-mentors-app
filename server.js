@@ -32,7 +32,7 @@ let MessageSchema = new mongoose.Schema({
     }
 });
 
-let Message = mongoose.model('Message', MessageSchema);
+let Message = mongoose.model('message', MessageSchema);
 
 
 // any requests that go to the '/api/mentees' endpoint will refer to this folder
