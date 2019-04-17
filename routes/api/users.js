@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
 // @route   POST request to the '/api/users' endpoint
 // @desc    Creates a new user document
 // @access  Public 
-router.post('/', (req, res) => {
+router.post('/register', (req, res) => {
     // 'new' refers to the creation of a new instance of the 'User' model from User.js
     // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
     const newUser = new User({
