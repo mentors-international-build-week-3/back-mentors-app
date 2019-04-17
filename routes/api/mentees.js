@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
             res.status(200).json(mentees);
         })
         .catch(err => {
-            res.status(500).res.json(err);
+            res.status(500).json(err);
         });
 });
 
