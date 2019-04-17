@@ -98,7 +98,7 @@ server.post('/api/messages', (req, res) => {
         if (message.length !==0) {
 
             if (!message[0].menteeFirstName && !message[0].menteeLastName && !message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeFirstName": body}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeFirstName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
@@ -107,32 +107,38 @@ server.post('/api/messages', (req, res) => {
 
                     res.end();
                 })
+                .catch(err => {
+                    res.status(500).json(err);
+                });
             } else if (!message[0].menteeLastName && !message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeLastName": body}}, {"new": true, "upsert": true}, () => {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"menteeLastName": smsBody}}, {"new": true, "upsert": true}, () => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Awesome, ${menteeFirstName}! Last question: Do you plan on attending your next mentor session? Please reply "y" for YES or "n" for NO.`
+                        body: `Awesome, ${message[0].menteeFirstName}! Last question: Do you plan on attending your next mentor session? Please reply "y" for YES or "n" for NO.`
                     })
 
                     res.end();
                 })
+                .catch(err => {
+                    res.status(500).json(err);
+                });
             } else if (!message[0].attending) {
-                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": body}}, {"new": true, "upsert": true}, () => {
-                    if ((body === "y") || (body === "Y") || (body === "n") || (body === "N")) {
-                        if ((body === "y") || (body === "Y")) {
+                Message.findByIdAndUpdate(message[0]._id, {"$set": {"attending": smsBody}}, {"new": true, "upsert": true}, () => {
+                    if ((smsBody === "y") || (smsBody === "Y") || (smsBody === "n") || (smsBody === "N")) {
+                        if ((smsBody === "y") || (smsBody === "Y")) {
                             client.messages.create({
                                 to: `${menteeNumber}`,
                                 from: `${appNumber}`,
-                                body: `Perfect, ${menteeFirstName}! We'll save your spot for you! Have an awesome day!`
+                                body: `Perfect, ${message[0].menteeFirstName}! We'll save your spot for you! Have an awesome day!`
                             })
         
                             res.end();
-                        } else if ((body === "n") || (body === "N")) {
+                        } else if ((smsBody === "n") || (smsBody === "N")) {
                             client.messages.create({
                                 to: `${menteeNumber}`,
                                 from: `${appNumber}`,
-                                body: `Oh no! We're sorry to hear won't you be able to join us, ${menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
+                                body: `Oh no! We're sorry to hear won't you be able to join us, ${message[0].menteeFirstName}. Please notify your mentor ASAP to reschedule another mentor session! Thank you and have a wonderful day!`
                             })
         
                             res.end();
@@ -141,12 +147,15 @@ server.post('/api/messages', (req, res) => {
                         client.messages.create({
                             to: `${menteeNumber}`,
                             from: `${appNumber}`,
-                            body: `I'm sorry, ${menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "y" for YES or "n" for NO.`
+                            body: `I'm sorry, ${message[0].menteeFirstName}, that wasn't a valid response. Please try again, but try to reply "y" for YES or "n" for NO.`
                         })
     
                         res.end();
                     }
                 })
+                .catch(err => {
+                    res.status(500).json(err);
+                });
             }
         } else {
 
@@ -159,7 +168,7 @@ server.post('/api/messages', (req, res) => {
                     client.messages.create({
                         to: `${menteeNumber}`,
                         from: `${appNumber}`,
-                        body: `Hi! Your number wasn't recognized in our database. What is your first name?`
+                        body: `Hi! Your phone number wasn't recognized in our database. What's your first name?`
                     })
 
                     res.end();
@@ -168,6 +177,9 @@ server.post('/api/messages', (req, res) => {
         }
 
         res.end();
+    })
+    .catch(err => {
+        res.status(500).json(err);
     });
 
 
