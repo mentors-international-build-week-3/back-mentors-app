@@ -44,15 +44,15 @@ mongoose
 // Passport middleware
 server.use(passport.initialize());
 
+
 // Passport configuration
 require("./config/passport")(passport);
 
+
 // route for the '/api/mentees' endpoint
 server.use('/api/mentees', mentees); 
-
 // route for the '/api/messages' endpoint
 server.use('/api/messages', messages);
-
 // route for the '/api/users' endpoint
 server.use('/api/users', users); 
 
