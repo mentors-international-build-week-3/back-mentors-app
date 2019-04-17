@@ -24,7 +24,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 mongoose
   .connect(db, { useNewUrlParser: true })
   .then(() => {
-    console.log("The MongoDB is connected!");
+    console.log("The MongoDB is connected in messages.js!");
   })
   .catch(err => {
     console.log(err);
@@ -178,53 +178,53 @@ router.post('/', async (req, res) => {
 // @route   DELETE request to the 'api/messages/:id' endpoint
 // @desc    Deletes a specific message
 // @access  Public
-// router.delete('/:id', (req, res) => {
-//     Message
-//         .findById(req.params.id)
-//         .then(message => {
-//             message
-//                 .remove()
-//                 .then(() => {
-//                     res.status(202).json({ delete_success: true });
-//                 })
-//                 .catch(err => {
-//                     res.status(404).json({ error_message: "Message was not deleted because this message could not be found"});
-//                 });
-//         })
-//         .catch(err => {
-//             res.status(500).json({ error_message: "Something went wrong while trying to delete this message from the database"});
-//         });
-// });
+router.delete('/:id', (req, res) => {
+    Message
+        .findById(req.params.id)
+        .then(message => {
+            message
+                .remove()
+                .then(() => {
+                    res.status(202).json({ delete_success: true });
+                })
+                .catch(err => {
+                    res.status(404).json({ error_message: "Message was not deleted because this message could not be found"});
+                });
+        })
+        .catch(err => {
+            res.status(500).json({ error_message: "Something went wrong while trying to delete this message from the database"});
+        });
+});
 
 // @route   PUT request to 'api/messages/:id'
 // @desc    Updates a specific message's document
 // @access  Public
-// router.put('/:id', (req, res) => {
-//     Message
-//         .findById(req.params.id)
-//         .then((message, err) => {
-//             if (!message) {
+router.put('/:id', (req, res) => {
+    Message
+        .findById(req.params.id)
+        .then((message, err) => {
+            if (!message) {
 
-//                 res.status(404).json({ error_message: "Message was not updated because this message could not be found" });
-//             } else {
+                res.status(404).json({ error_message: "Message was not updated because this message could not be found" });
+            } else {
 
-//                 (req.body.menteeFirstName) ? message.menteeFirstName = req.body.menteeFirstName : null;
-//                 (req.body.menteeLastName) ? message.menteeLastName = req.body.menteeLastName : null;
-//                 (req.body.phoneNumber) ? message.phoneNumber = req.body.phoneNumber : null;
-//                 (req.body.attending) ? message.attending = req.body.attending : null;
-//                 (req.body.noAttendReason) ? message.noAttendReason = req.body.noAttendReason : null;
-//                 (req.body.needBooks) ? message.needBooks = req.body.needBooks : null;
+                (req.body.menteeFirstName) ? message.menteeFirstName = req.body.menteeFirstName : null;
+                (req.body.menteeLastName) ? message.menteeLastName = req.body.menteeLastName : null;
+                (req.body.phoneNumber) ? message.phoneNumber = req.body.phoneNumber : null;
+                (req.body.attending) ? message.attending = req.body.attending : null;
+                (req.body.noAttendReason) ? message.noAttendReason = req.body.noAttendReason : null;
+                (req.body.needBooks) ? message.needBooks = req.body.needBooks : null;
 
-//                 message
-//                     .save()
-//                     .then(message => {
-//                         res.status(202).json({ error_message: "Message was updated successfully" });
-//                     })
-//                     .catch(err => {
-//                         res.status(400).json({ error_message: "Something went wrong while trying to update this message" });
-//                     });
-//             }
-//         });
-// });
+                message
+                    .save()
+                    .then(message => {
+                        res.status(202).json({ update_status: "Message was updated successfully" });
+                    })
+                    .catch(err => {
+                        res.status(400).json({ error_message: "Something went wrong while trying to update this message" });
+                    });
+            }
+        });
+});
 
 module.exports = router;
