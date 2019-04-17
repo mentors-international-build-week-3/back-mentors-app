@@ -26,8 +26,8 @@ module.exports = function validateLoginInput(data) {
         errors.password2 = "Confirm password field is required";
     }
 
-    if (!Validator.isLength(data.password, { min: 10, max: 50 })) {
-        errors.password = "Password must be at least 10 characters";
+    if (!Validator.isLength(data.password, { min: 8, max: 50 })) {
+        errors.password = "Password must be at least 8 characters";
     }
 
     if (Validator.equals(data.password, data.password2)) {
@@ -37,9 +37,7 @@ module.exports = function validateLoginInput(data) {
     // checks phoneNumber field
     if (Validator.isEmpty(data.phoneNumber)) {
         errors.phoneNumber = "Phone number field is required";
-    } else if (!Validator.isMobilePhone(data.phoneNumber)) {
-        errors.phoneNumber = "Phone number is invalid";
-    }   
+    } 
 
     // checks email field
     if (Validator.isEmpty(data.email)) {
