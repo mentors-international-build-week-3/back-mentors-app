@@ -1,10 +1,9 @@
-const initialState = {};
-  
-  const reducer = (state = initialState, action) => {
-    switch (action.type) {
-      default:
-        return state;
-    }
-  };
-  
-  export default reducer;
+import { combineReducers } from 'redux';
+import authReducers from './authReducers';
+import errorReducers from './errorReducers';
+
+
+export default combineReducers({
+    auth: authReducers,
+    error: errorReducers
+});
