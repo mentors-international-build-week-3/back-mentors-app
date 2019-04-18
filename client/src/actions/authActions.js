@@ -13,7 +13,10 @@ import {
 export const signupUser = (userData, history) => dispatch => {
   axios
     .post("/api/users/signup", userData)
-    .then(res => history.push("/login")) // re-directs to the login page if signup was successful
+    .then(res => {
+        console.log(res);
+        history.push("/login");     // re-directs to the login page if signup was successful
+    }) 
     .catch(err =>
         dispatch({
             type: GET_ERRORS,

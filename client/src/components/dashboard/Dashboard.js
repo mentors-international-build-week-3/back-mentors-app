@@ -18,8 +18,11 @@ class Dashboard extends Component {
             <div style={{ height: "75vh" }} className="container valign-wrapper">
                 <div className="row">
                     <div className="col s12 center-align">
+                        <h3>
+                            <b>Hello there!</b>
+                        </h3>
                         <h4>
-                            <b>Hey there,</b> {user.name.split(" ")[0]}
+                            <b>Welcome to your Mentor Dashboard!</b>
                             <p className="flow-text grey-text text-darken-1">
                                 You are logged into a full-stack{" "}
                                 <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
