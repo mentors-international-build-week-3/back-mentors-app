@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 class Signup extends Component {
@@ -32,16 +32,16 @@ class Signup extends Component {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
+            <NavLink to="/" className="btn-flat waves-effect">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
-            </Link>
+            </NavLink>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Sign up</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log In</Link>
+                Already have an account? <NavLink to="/login">Log In</NavLink>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>

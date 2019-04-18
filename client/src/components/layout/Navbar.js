@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 
 class Navbar extends Component {
@@ -8,16 +8,17 @@ class Navbar extends Component {
       <div className="navbar-fixed">
         <nav className="z-depth-0">
           <div className="nav-wrapper blue">
-            <Link
+            <NavLink
               to="/"
               style={{
                 fontFamily: "monospace",
-                fontSize: "3rem"
+                fontSize: "2rem",
+                marginLeft: "3rem"
               }}
-              className="col s5 brand-logo center white-text"
+              className="col s5 brand-logo left white-text"
             >
               Mentors International
-            </Link>
+            </NavLink>
           </div>
         </nav>
       </div>
