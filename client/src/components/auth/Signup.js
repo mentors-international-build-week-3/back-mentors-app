@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+
+import { signupUser } from "../../actions/authActions";
 
 
 class Signup extends Component {
@@ -106,4 +109,13 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+});
+
+export default connect(
+    mapStateToProps,
+    { signupUser }
+)(withRouter(Signup)); 
