@@ -11,6 +11,9 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
   },
+  "engines": {
+    "node": "10.15.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mentors-international-build-week-3/back-mentors-app.git"
