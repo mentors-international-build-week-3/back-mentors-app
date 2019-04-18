@@ -25,6 +25,7 @@ class Landing extends Component {
             </p>
             <br />
             <a
+              href="/signup"
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -35,6 +36,7 @@ class Landing extends Component {
               Sign Up
             </a>
             <a
+              href="/login"
               style={{
                 marginLeft: "2rem",
                 width: "150px",
