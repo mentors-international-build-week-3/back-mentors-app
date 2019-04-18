@@ -17,12 +17,12 @@ export const signupUser = (userData, history) => dispatch => {
         console.log(res);
         history.push("/login");     // re-directs to the login page if signup was successful
     }) 
-    .catch(err =>
+    .catch(err => {
         dispatch({
             type: GET_ERRORS,
             payload: err.response.data
         })
-    );
+    });
 };
 
 

@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
 
     render() {
-        const { user } = this.props.auth;
+        // const { user } = this.props.auth;
         return (
             <div style={{ height: "75vh" }} className="container valign-wrapper">
                 <div className="row">
@@ -24,8 +24,7 @@ class Dashboard extends Component {
                         <h4>
                             <b>Welcome to your Mentor Dashboard!</b>
                             <p className="flow-text grey-text text-darken-1">
-                                You are logged into a full-stack{" "}
-                                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
+                                Time to change someone's world, one text message at a time! 
                             </p>
                         </h4>
                         <button
