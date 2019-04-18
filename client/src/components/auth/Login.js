@@ -19,6 +19,12 @@ class Login extends Component {
         };
     };
 
+    componentDidMount() {
+        // redirects a logged in user to the dashboard
+        if (this.props.auth.isAuthenticated) {
+          this.props.history.push("/dashboard");
+        }
+    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.auth.isAuthenticated) {
@@ -32,7 +38,6 @@ class Login extends Component {
             });
         }
     }
-
 
     onChange = e => {
         this.setState({ [e.target.id]: e.target.value });
