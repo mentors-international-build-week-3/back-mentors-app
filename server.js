@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const path = require("path"); // deals with file paths
 const passport = require("passport");
 const twilio = require("twilio");
 
@@ -56,6 +57,15 @@ server.use('/api/messages', messages);
 // route for the '/api/users' endpoint
 server.use('/api/users', users); 
 
+// serves static assets if in production
+if(process.env.NODE_ENV === 'production') {
+    // sets static folder
+    server.use(express.static('client/build'));
+
+    server.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
 
 const port = process.env.PORT || 4000;
 
