@@ -22,12 +22,12 @@ const messages = require('./routes/api/messages');
 const users = require('./routes/api/users');
 
 
-const server = express();
+const app = express();
 
-server.use(express.json());
-server.use(cors());
-server.use(bodyParser.urlencoded({ extended: false }));
-server.use(bodyParser.json());
+app.use(express.json());
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // configures the MongoDB with the URI
 const db = require('./config/keys').mongoURI;
@@ -36,14 +36,14 @@ const db = require('./config/keys').mongoURI;
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => {
-        console.log('The MongoDB is successfully connected with server.js!');
+        console.log('The MongoDB is successfully connected with app.js!');
     })
     .catch(err => {
         console.log(err)
     });
 
 // Passport middleware
-server.use(passport.initialize());
+app.use(passport.initialize());
 
 
 // Passport configuration
@@ -51,25 +51,25 @@ require("./config/passport")(passport);
 
 
 // route for the '/api/mentees' endpoint
-server.use('/api/mentees', mentees); 
+app.use('/api/mentees', mentees); 
 // route for the '/api/messages' endpoint
-server.use('/api/messages', messages);
+app.use('/api/messages', messages);
 // route for the '/api/users' endpoint
-server.use('/api/users', users); 
+app.use('/api/users', users); 
 
 // serves static assets if in production
 if(process.env.NODE_ENV === 'production') {
     // sets static folder
-    server.use(express.static('client/build'));
+    app.use(express.static('client/build'));
 
-    server.get('*', (req, res) => {
+    app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
 
 const port = process.env.PORT || 5000;
 
-server.listen(port, () => {
+app.listen(port, () => {
   console.log(
     `\n** The Mentors App server is up and running on port ${port} **\n`
   );
