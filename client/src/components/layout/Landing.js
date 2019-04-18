@@ -9,8 +9,8 @@ class Landing extends Component {
         <div className="row">
           <div className="col s12 center-align">
             <h4 style={{ fontSize: "5rem", verticalAlign: "middle", marginTop: "6rem"}}>
-                <i className="material-icons blue-text text-darken-4" style={{ fontSize: "5rem", verticalAlign: "top", paddingRight: "1.5rem" }}>school</i> + 
-                <i className="material-icons orange-text text-darken-1" style={{ fontSize: "5rem", verticalAlign: "top", paddingLeft: "2rem", paddingRight: "1.5rem" }}>people</i>
+                <i className="material-icons orange-text text-darken-1" style={{ fontSize: "5rem", verticalAlign: "top", paddingRight: "1.5rem" }}>people</i> + 
+                <i className="material-icons blue-text text-darken-4" style={{ fontSize: "5rem", verticalAlign: "top", paddingLeft: "2rem", paddingRight: "1.5rem" }}>school</i>
                 <span style={{ paddingLeft: "0", paddingRight: "1.5rem" }}> = </span>
                 <i className="material-icons brown-text text-darken-3" style={{ fontSize: "5rem", verticalAlign: "top", paddingLeft: "1rem", paddingRight: "1.5rem" }}>work</i> +
                 <i className="material-icons green-text text-darken-1" style={{ fontSize: "5rem", verticalAlign: "top", padding: "0 1.5rem" }}>monetization_on</i>
