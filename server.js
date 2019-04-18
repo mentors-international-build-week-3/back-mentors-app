@@ -71,6 +71,6 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(
-    `\n** The Mentors App server is up and running on port ${port} **\n`
+    `\n** The Mentors App back-end server is up and running on port ${port} **\n`
   );
 });
