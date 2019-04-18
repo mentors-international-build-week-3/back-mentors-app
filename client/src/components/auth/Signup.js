@@ -11,6 +11,7 @@ class Signup extends Component {
         super();
         this.state = {
         userFirstName: "",
+        userLastName: "",
         email: "",
         password: "",
         password2: "",
@@ -42,6 +43,7 @@ class Signup extends Component {
         e.preventDefault();
         const newUser = {
         userFirstName: this.state.userFirstName,
+        userLastName: this.state.userLastName,
         email: this.state.email,
         password: this.state.password,
         password2: this.state.password2
@@ -83,6 +85,20 @@ class Signup extends Component {
                                 />
                                 <label htmlFor="userFirstName">First Name</label>
                                 <span className="red-text">{errors.userFirstName}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChange}
+                                    value={this.state.userLastName}
+                                    error={errors.userLastName}
+                                    id="userLastName"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.userLastName
+                                    })}
+                                />
+                                <label htmlFor="userLastName">Last Name</label>
+                                <span className="red-text">{errors.userLastName}</span>
                             </div>
                             <div className="input-field col s12">
                                 <input
