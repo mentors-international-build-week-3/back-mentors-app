@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-
-import { Provider } from "react-redux";
-import store from './store';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 import './App.css';
@@ -15,7 +12,7 @@ import Login from "./components/auth/Login";
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
+      <Router>
         <div className="App">
           <Navbar />
           <Route exact path="/" component={Landing} />
@@ -30,8 +27,7 @@ class App extends Component {
             render={props => <Login {...props} />}
           />
         </div>
-      </Provider>
-
+      </Router>
     );
   }
 }
