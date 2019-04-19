@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import '../../App.css';
 
-class App extends Component {
+class NewSms extends Component {
   state = {
     text: {
       recipient: '',
@@ -27,7 +28,7 @@ class App extends Component {
     console.log("Your text message was sent successfully!");
     const { text } = this.state;
     //pass variables within the query string
-    fetch(`http://localhost:4000/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    fetch(`http://localhost:5000/api/messages/newsms?recipient=${text.recipient}&textmessage=${text.textmessage}`)
     .catch(err => console.error(err));
 
     this.setState({
@@ -41,7 +42,10 @@ class App extends Component {
   render() {
     return (
       <div className="App-container">
-        <h1 className="App-title">Send an Appointment Reminder to Your Student</h1>
+        <Link to="/students" className="btn-flat waves-effect">
+          <i className="material-icons left">keyboard_backspace</i> Back to
+            Students                      
+        </Link>
         <div className="App-content">
           <h2 className="App-content-heading">Send an Appointment Reminder to Your Student!</h2> 
           <div className="App-images-container">         
@@ -87,4 +91,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default NewSms;

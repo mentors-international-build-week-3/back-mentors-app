@@ -79,9 +79,9 @@ function Students(props) {
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify="center">
                 <Grid item>
-                  <Link to="/newmessage">
-                    <a
-                      href="/newmessages"
+                  <Link 
+                      to="/newsms"
+                      href="/newsms"
                       style={{
                         width: "150px",
                         borderRadius: "3px",
@@ -89,14 +89,13 @@ function Students(props) {
                         margin: "1rem"
                       }}
                       className="btn btn-large waves-effect waves-light hoverable pink accent-5"
-                    >
-                      New SMS
-                    </a>         
+                  >
+                      New SMS         
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link to="/rsvpbot">
-                    <a
+                  <Link 
+                      to="/rsvpbot"
                       href="/rsvpbot"
                       style={{
                         width: "150px",
@@ -106,8 +105,7 @@ function Students(props) {
                       }}
                       className="btn btn-large waves-effect waves-light hoverable purple accent-5"
                     >
-                      RSVP bot
-                    </a>         
+                      RSVP bot        
                   </Link>
                 </Grid>
               </Grid>

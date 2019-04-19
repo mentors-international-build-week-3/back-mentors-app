@@ -1,6 +1,7 @@
 .App-container {
     display: flex;
     padding-bottom: 20px;
+    margin-top: 0;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
@@ -20,14 +21,14 @@
     align-items: center;
     width: 75%;
     margin: 10px 0;
-    padding: 10px 0;
-    border: 3px solid silver;
+    padding: 0;
+    border: 3px solid ;
     border-radius: 10px;
   }
   
   .App-content-heading {
     width: 100%;
-    color: silver;
+    color: blue;
     text-align: center;
     font-size: 3.0rem;
     margin: 10px;
@@ -72,8 +73,8 @@
   
   .label-recipient {
     width: 30%;
-    color: lime;
-    font-size: 2.5rem;
+    color: blue;
+    font-size: 1.5rem;
     font-weight: bolder;
   }
   
@@ -81,7 +82,7 @@
     width: 69%;
     margin-left: 0px;
     margin-right: 200px;
-    font-size: 2.3rem;
+    font-size: 3rem;
     height: 45px;
     border: 2px solid black;
     border-radius: 5px;
@@ -98,14 +99,14 @@
   }
   
   .label-message {
-    color: lime;
-    font-size: 2.5rem;
+    color: blue;
+    font-size: 1.5rem;
     font-weight: bolder;
     margin-top: 2px;
   }
   
   .text-area-message {
-    font-size: 2.3rem;
+    font-size: 1.8rem;
     width: 100%;
     margin-left: 20px;
     margin-right: 200px;
