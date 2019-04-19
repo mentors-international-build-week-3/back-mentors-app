@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../../App.css';
 
-class App extends Component {
+class NewSms extends Component {
   state = {
     text: {
       recipient: '',
@@ -27,7 +27,7 @@ class App extends Component {
     console.log("Your text message was sent successfully!");
     const { text } = this.state;
     //pass variables within the query string
-    fetch(`http://localhost:4000/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    fetch(`http://localhost:5000/send-text?recipient=${text.recipient}&textmessage=${text.textmessage}`)
     .catch(err => console.error(err));
 
     this.setState({
@@ -87,4 +87,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default NewSms;

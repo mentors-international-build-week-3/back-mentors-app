@@ -30,6 +30,25 @@ router.get("/", (req, res) => {
     });
 });
 
+
+// @route   GET request to the '/api/newmessage' endpoint
+// @desc    Sends a single SMS to a specific phone number
+// @access  Public
+router.get('/newsms', (req, res) => {
+    
+    const { recipient, textmessage } = req.query
+
+    // Send Text
+    client.messages
+        .create({
+            body: textmessage,
+            from: '+19892626512', // from Mentors App
+            to: recipient
+    })
+    .then((message) => console.log(message.body));
+})
+
+
 // @route   POST request to the '/api/messages' endpoint
 // @desc    Creates an SMS conversation with the mentee; creates a new message document
 // @access  Public 

@@ -28,34 +28,32 @@ class Dashboard extends Component {
                                 <i className="material-icons blue-text outlined" style={{ fontSize: "3rem", verticalAlign: "top", padding: "0 0.5rem" }}>textsms</i> at a time! 
                             </p>
                         </h4>
-                        <Link to="/messages">
-                            <a
-                                href="/messages"
-                                style={{
-                                    width: "150px",
-                                    borderRadius: "3px",
-                                    letterSpacing: "1.5px",
-                                    margin: "1rem"
-                                }}
-                                onClick={this.onMessagesClick}
-                                className="btn btn-large waves-effect waves-light hoverable green accent-5"
-                            >
-                                Messages
-                            </a>
+                        <Link 
+                            to="/messages"
+                            href="/messages"
+                            style={{
+                                width: "150px",
+                                borderRadius: "3px",
+                                letterSpacing: "1.5px",
+                                margin: "1rem"
+                            }}
+                            onClick={this.onMessagesClick}
+                            className="btn btn-large waves-effect waves-light hoverable green accent-5"
+                        >
+                            Messages
                         </Link>
-                        <Link to="/students">
-                            <a
-                                href="/students"
-                                style={{
-                                    width: "150px",
-                                    borderRadius: "3px",
-                                    letterSpacing: "1.5px",
-                                    margin: "1rem"
-                                }}
-                                className="btn btn-large waves-effect waves-light hoverable purple accent-5"
-                            >
-                                Students
-                            </a>
+                        <Link 
+                            to="/students" 
+                            href="/students"
+                            style={{
+                                width: "150px",
+                                borderRadius: "3px",
+                                letterSpacing: "1.5px",
+                                margin: "1rem"
+                            }}
+                            className="btn btn-large waves-effect waves-light hoverable purple accent-5"
+                        >
+                            Students
                         </Link>
                         <button
                             style={{
