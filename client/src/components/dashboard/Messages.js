@@ -52,9 +52,9 @@ function getSorting(order, orderBy) {
 
 const rows = [
   { id: 'message', numeric: false, disablePadding: true, label: 'Message' },
-  { id: 'menteefirstName', numeric: true, disablePadding: false, label: 'First Name' },
-  { id: 'menteeLastName', numeric: true, disablePadding: false, label: 'Last Name' },
-  { id: 'group', numeric: true, disablePadding: false, label: 'Group' },
+  { id: 'menteefirstName', numeric: true, disablePadding: false, label: "Recipient's First Name" },
+  { id: 'menteeLastName', numeric: true, disablePadding: false, label: "Recipient's Last Name" },
+  { id: 'group', numeric: true, disablePadding: false, label: "Group" },
   { id: 'RSVP', numeric: true, disablePadding: false, label: 'RSVP' },
 ];
 
@@ -157,7 +157,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant="h6" id="tableTitle">
-            Messages
+            Outgoing Messages
           </Typography>
         )}
       </div>
@@ -207,19 +207,20 @@ class Messages extends React.Component {
     orderBy: 'menteefirstName',
     selected: [],
     data: [
-      createData('!Hola, mi BroMigo! ?Como estas, BroChacho?', 'Julian', 'Moreno', 'Software', '1'),
-      createData('Donut', 452, 25.0, 51, 4.9),
-      createData('Eclair', 262, 16.0, 24, 6.0),
-      createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-      createData('Gingerbread', 356, 16.0, 49, 3.9),
-      createData('Honeycomb', 408, 3.2, 87, 6.5),
-      createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-      createData('Jelly Bean', 375, 0.0, 94, 0.0),
-      createData('KitKat', 518, 26.0, 65, 7.0),
-      createData('Lollipop', 392, 0.2, 98, 0.0),
-      createData('Marshmallow', 318, 0, 81, 2.0),
-      createData('Nougat', 360, 19.0, 9, 37.0),
-      createData('Oreo', 437, 18.0, 63, 4.0),
+      createData("!Hola, mi BroMigo! ?Como estas, BroChacho? ?Porque NADAAAAAAAAAA?", 'Julian', 'Moreno', 'Cohort', '1'),
+      createData("Hey, B-Dawg! How much can you bench press now?", 'Brandon', 'Gardner', 'Cohort', '0'),
+      createData("Dang, dude! How much bread are you making from working on Saturdays at the bakery?", 'Ryan', 'Clark', 'Cohort', '0'),
+      createData("You're making more bread than Kanye West (insert emoji with large eyes here)!", 'Ryan', 'Clark', 'Cohort', '0'),
+      createData('Did Ryan Hamblin REALLY say that Web17 was the best cohort to ever come through Lambda???', 'Jake', 'Thomas', 'PM', '1'),
+      createData("C'mon, Jamie! You know you can't use your ACTUAL cat for 'Rubber Ducky Debugging,' right?", 'Jamie', 'Goodnight', 'PM', '1'),
+      createData("Are you serious about waving the ISA for my PM group, Austen??? Thanks, man!!", 'Austen', 'Allred', 'Celebrity', '0'),
+      createData("Have you heard Dustin's new pre-lecture playlist?!? It's like 'Techno' and 'Star Wars' had a baby!", 'Lowell', 'Richardson', 'Cohort', '0'),
+      createData("Oh, my bad! I thought you meant 'bread', as in the slang-term for 'money' (insert shrug emoji here). LOL.", 'Ryan', 'Clark', 'Cohort', '0'),
+      createData("Dude, Mikaela just posted a puke vid in the pomodoro-hack channel from last weekend's half-marathon! Dope!", 'Jake', 'Thomas', 'PM', '1'),
+      createData("BIG KNELL-Y KNELL! If I pay you in Bitcoin, would you be able to willing to perform a drop-thumb banjo solo at my birthday party?", 'Josh', 'Knell', 'Instructor', '1'),
+      createData("Hey, Luis, when my airtable form throws an error and fails to submit, does it go to some sort of SQL-purgatory or nahhh???", 'Luis', 'Hernandez', 'Instructor', '0'),
+      createData("Do people still make ring-tones for their phones? Because I just made a DOPE one of Luis saying, 'SUUUUCCCCCCEEEESSSSSSSSSSSSSSSSS'!", 'Julian', 'Moreno', 'Cohort', '1'),
+      createData("What do you mean the new Lambda School 'Tiger-Woods-Victory-Red-Masters-Edition' golf polo swag is SOLD OUT already??? Say it ain't so, HOLDY!!", 'Ryan', 'Holdaway', 'Staff', '0'),
     ],
     page: 0,
     rowsPerPage: 5,
