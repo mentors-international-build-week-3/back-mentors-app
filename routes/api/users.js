@@ -47,12 +47,9 @@ router.post("/signup", (req, res) => {
     // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
     const newUser = new User({
       email: req.body.email,
-      username: req.body.username,
-      password: req.body.password,
       userFirstName: req.body.userFirstName,
       userLastName: req.body.userLastName,
-      userType: req.body.userType,
-      phoneNumber: req.body.phoneNumber
+      password: req.body.password
     });
 
     // hashes password before saving in database
@@ -98,16 +95,16 @@ router.post("/login", (req, res) => {
         // Creates a JWT Payload
         const payload = {
           id: user.id,
-          name: user.name
+          userFirstName: user.userFirstName,
+          userLastName: user.userLastName
         };
 
         // Signs the token
         jwt.sign(
           payload,
           keys.secretOrKey,
-          { expiresIn: 21600 },
+          { expiresIn: 21600 }, // 21,600 sec => 6 hours
           (err, token) => {
-            // 21,600 sec => 6 hours
             res.json({ success: true, token: "Bearer " + token });
           }
         );
@@ -163,16 +160,10 @@ router.put("/:id", (req, res) => {
         });
     } else {
       req.body.email ? (user.email = req.body.email) : null;
-      req.body.username ? (user.username = req.body.username) : null;
+      req.body.userFirstName ? (user.userFirstName = req.body.userFirstName) : null;
+      req.body.userLastName ? (user.userLastName = req.body.userLastName) : null;
       req.body.password ? (user.password = req.body.password) : null;
-      req.body.userFirstName
-        ? (user.userFirstName = req.body.userFirstName)
-        : null;
-      req.body.userLastName
-        ? (user.userLastName = req.body.userLastName)
-        : null;
-      req.body.userType ? (user.userType = req.body.userType) : null;
-      req.body.phoneNumber ? (user.phoneNumber = req.body.phoneNumber) : null;
+
 
       user
         .save()

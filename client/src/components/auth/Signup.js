@@ -10,8 +10,9 @@ class Signup extends Component {
     constructor() {
         super();
         this.state = {
-        name: "",
         email: "",
+        userFirstName: "",
+        userLastName: "",
         password: "",
         password2: "",
         errors: {}
@@ -41,10 +42,11 @@ class Signup extends Component {
     onSubmit = e => {
         e.preventDefault();
         const newUser = {
-        name: this.state.name,
         email: this.state.email,
+        userFirstName: this.state.userFirstName,
+        userLastName: this.state.userLastName,
         password: this.state.password,
-        password2: this.state.password2
+        password2: this.state.password2,
         };
 
         this.props.signupUser(newUser, this.props.history);
@@ -73,20 +75,6 @@ class Signup extends Component {
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
-                                    value={this.state.name}
-                                    error={errors.name}
-                                    id="name"
-                                    type="text"
-                                    className={classnames("", {
-                                        invalid: errors.name
-                                    })}
-                                />
-                                <label htmlFor="name">Name</label>
-                                <span className="red-text">{errors.name}</span>
-                            </div>
-                            <div className="input-field col s12">
-                                <input
-                                    onChange={this.onChange}
                                     value={this.state.email}
                                     error={errors.email}
                                     id="email"
@@ -97,6 +85,34 @@ class Signup extends Component {
                                 />
                                 <label htmlFor="email">Email</label>
                                 <span className="red-text">{errors.email}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChange}
+                                    value={this.state.userFirstName}
+                                    error={errors.userFirstName}
+                                    id="userFirstName"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.userFirstName
+                                    })}
+                                />
+                                <label htmlFor="userFirstName">First Name</label>
+                                <span className="red-text">{errors.userFirstName}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChange}
+                                    value={this.state.userLastName}
+                                    error={errors.userLastName}
+                                    id="userLastName"
+                                    type="text"
+                                    className={classnames("", {
+                                        invalid: errors.userLastName
+                                    })}
+                                />
+                                <label htmlFor="userLastName">Last Name</label>
+                                <span className="red-text">{errors.userLastName}</span>
                             </div>
                             <div className="input-field col s12">
                                 <input

@@ -11,24 +11,10 @@ const twilioSid = require("../../config/keys").accountSid;
 const twilioAuthToken = require("../../config/keys").authToken;
 const client = new twilio(twilioSid, twilioAuthToken);
 
+
 // Imports the Message Model (so we can query the 'messages' collection in the MongoDB)
 const Message = require("../../models/Message");
 
-const db = require("../../config/keys").mongoURI;
-
-router.use(express.json());
-router.use(cors());
-router.use(bodyParser.urlencoded({ extended: false }));
-
-// connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => {
-    console.log("The MongoDB is successfully connected with messages.js!");
-  })
-  .catch(err => {
-    console.log(err);
-  });
 
 // @route   GET request to the '/api/messages' endpoint
 // @desc    Retrieves all messages from MongoDB
@@ -212,8 +198,7 @@ router.put('/:id', (req, res) => {
                 (req.body.menteeLastName) ? message.menteeLastName = req.body.menteeLastName : null;
                 (req.body.phoneNumber) ? message.phoneNumber = req.body.phoneNumber : null;
                 (req.body.attending) ? message.attending = req.body.attending : null;
-                (req.body.noAttendReason) ? message.noAttendReason = req.body.noAttendReason : null;
-                (req.body.needBooks) ? message.needBooks = req.body.needBooks : null;
+
 
                 message
                     .save()

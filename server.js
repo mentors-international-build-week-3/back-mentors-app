@@ -36,7 +36,7 @@ const db = require('./config/keys').mongoURI;
 mongoose
     .connect(db, { useNewUrlParser: true })
     .then(() => {
-        console.log('The MongoDB is successfully connected with app.js!');
+        console.log('The MongoDB has successfully connected with server.js!');
     })
     .catch(err => {
         console.log(err)
@@ -71,6 +71,6 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(
-    `\n** The Mentors App server is up and running on port ${port} **\n`
+    `\n** The Mentors App back-end server is up and running on port ${port} **\n`
   );
 });

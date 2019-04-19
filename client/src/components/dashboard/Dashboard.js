@@ -24,7 +24,8 @@ class Dashboard extends Component {
                         <h4>
                             <b>Welcome to your Mentor Dashboard!</b>
                             <p className="flow-text grey-text text-darken-1">
-                                Time to change someone's world, one text message at a time! 
+                                Let's change some lives, one 
+                                <i className="material-icons blue-text outlined" style={{ fontSize: "3rem", verticalAlign: "top", padding: "0 0.5rem" }}>textsms</i> at a time! 
                             </p>
                         </h4>
                         <button
