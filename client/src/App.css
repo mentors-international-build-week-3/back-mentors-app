@@ -21,13 +21,13 @@
     width: 75%;
     margin: 10px 0;
     padding: 10px 0;
-    border: 3px solid silver;
+    border: 3px solid ;
     border-radius: 10px;
   }
   
   .App-content-heading {
     width: 100%;
-    color: silver;
+    color: blue;
     text-align: center;
     font-size: 3.0rem;
     margin: 10px;
@@ -72,8 +72,8 @@
   
   .label-recipient {
     width: 30%;
-    color: lime;
-    font-size: 2.5rem;
+    color: blue;
+    font-size: 1.5rem;
     font-weight: bolder;
   }
   
@@ -98,8 +98,8 @@
   }
   
   .label-message {
-    color: lime;
-    font-size: 2.5rem;
+    color: blue;
+    font-size: 1.5rem;
     font-weight: bolder;
     margin-top: 2px;
   }
