@@ -17,6 +17,9 @@ import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
+import Messages from "./components/dashboard/Messages";
+import Students from "./components/dashboard/Students";
+
 
 
 const store = createStore(rootReducer, applyMiddleware(thunk, logger));
@@ -67,6 +70,8 @@ class App extends Component {
 					/>
 					<Switch>
 						<PrivateRoute exact path="/dashboard" component={Dashboard} />
+						<PrivateRoute exact path="/students" component={Students} />
+						<PrivateRoute exact path="/messages" component={Messages} />
 					</Switch>
 				</div>
 			</Router>

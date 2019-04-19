@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -10,7 +11,6 @@ class Dashboard extends Component {
         e.preventDefault();
         this.props.logoutUser();
     };
-
 
     render() {
         // const { user } = this.props.auth;
@@ -28,15 +28,44 @@ class Dashboard extends Component {
                                 <i className="material-icons blue-text outlined" style={{ fontSize: "3rem", verticalAlign: "top", padding: "0 0.5rem" }}>textsms</i> at a time! 
                             </p>
                         </h4>
+                        <Link to="/messages">
+                            <a
+                                href="/messages"
+                                style={{
+                                    width: "150px",
+                                    borderRadius: "3px",
+                                    letterSpacing: "1.5px",
+                                    margin: "1rem"
+                                }}
+                                onClick={this.onMessagesClick}
+                                className="btn btn-large waves-effect waves-light hoverable green accent-5"
+                            >
+                                Messages
+                            </a>
+                        </Link>
+                        <Link to="/students">
+                            <a
+                                href="/students"
+                                style={{
+                                    width: "150px",
+                                    borderRadius: "3px",
+                                    letterSpacing: "1.5px",
+                                    margin: "1rem"
+                                }}
+                                className="btn btn-large waves-effect waves-light hoverable purple accent-5"
+                            >
+                                Students
+                            </a>
+                        </Link>
                         <button
                             style={{
                                 width: "150px",
                                 borderRadius: "3px",
                                 letterSpacing: "1.5px",
-                                marginTop: "1rem"
+                                margin: "1rem"
                             }}
                             onClick={this.onLogoutClick}
-                            className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                            className="btn btn-large waves-effect waves-light hoverable red accent-3"
                         >
                             Logout
                         </button>
