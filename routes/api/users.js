@@ -46,15 +46,10 @@ router.post("/signup", (req, res) => {
     // 'new' refers to the creation of a new instance of the 'User' model from User.js
     // 'User' refers to the use of the 'User' model (from Schema) as a template to build our new instance
     const newUser = new User({
+      email: req.body.email,
       userFirstName: req.body.userFirstName,
       userLastName: req.body.userLastName,
-      password: req.body.password,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      checkedTeacher: req.body.checkedTeacher,
-      checkedClient: req.body.checkedClient,
-      checkedCountryManager: req.body.checkedCountryManager,
-      checkedBoardMember: req.body.checkedBoardMember,
+      password: req.body.password
     });
 
     // hashes password before saving in database
@@ -164,15 +159,10 @@ router.put("/:id", (req, res) => {
           message: "User was not updated because this user could not be found"
         });
     } else {
+      req.body.email ? (user.email = req.body.email) : null;
       req.body.userFirstName ? (user.userFirstName = req.body.userFirstName) : null;
       req.body.userLastName ? (user.userLastName = req.body.userLastName) : null;
       req.body.password ? (user.password = req.body.password) : null;
-      req.body.email ? (user.email = req.body.email) : null;
-      req.body.phoneNumber ? (user.phoneNumber = req.body.phoneNumber) : null;
-      req.body.checkedTeacher ? (user.checkedTeacher = req.body.checkedTeacher) : null;
-      req.body.checkedClient ? (user.checkedClient = req.body.checkedClient) : null;
-      req.body.checkedCountryManager ? (user.checkedCountryManager = req.body.checkedCountryManager) : null;
-      req.body.checkedBoardMember ? (user.checkedBoardMember = req.body.checkedBoardMember) : null;
 
 
       user

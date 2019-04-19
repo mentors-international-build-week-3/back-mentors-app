@@ -52,11 +52,6 @@ class Signup extends Component {
         password: this.state.password,
         password2: this.state.password2,
         email: this.state.email,
-        phoneNumber: this.state.phoneNumber,
-        checkedTeacher: this.state.checkedTeacher,
-        checkedClient: this.state.checkedClient,
-        checkedCountryManager: this.state.checkedCountryManager,
-        checkedBoardMember: this.state.checkedBoardMember
         };
 
         this.props.signupUser(newUser, this.props.history);
