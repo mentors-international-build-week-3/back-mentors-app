@@ -12,9 +12,14 @@ class Signup extends Component {
         this.state = {
         userFirstName: "",
         userLastName: "",
-        email: "",
         password: "",
         password2: "",
+        email: "",
+        phoneNumber: "",
+        checkedTeacher: false,
+        checkedClient: false,
+        checkedCountryManager: false,
+        checkedBoardMember: false,
         errors: {}
         };
     }
@@ -44,9 +49,14 @@ class Signup extends Component {
         const newUser = {
         userFirstName: this.state.userFirstName,
         userLastName: this.state.userLastName,
-        email: this.state.email,
         password: this.state.password,
-        password2: this.state.password2
+        password2: this.state.password2,
+        email: this.state.email,
+        phoneNumber: this.state.phoneNumber,
+        checkedTeacher: this.state.checkedTeacher,
+        checkedClient: this.state.checkedClient,
+        checkedCountryManager: this.state.checkedCountryManager,
+        checkedBoardMember: this.state.checkedBoardMember
         };
 
         this.props.signupUser(newUser, this.props.history);
@@ -103,20 +113,6 @@ class Signup extends Component {
                             <div className="input-field col s12">
                                 <input
                                     onChange={this.onChange}
-                                    value={this.state.email}
-                                    error={errors.email}
-                                    id="email"
-                                    type="email"
-                                    className={classnames("", {
-                                        invalid: errors.email
-                                    })}
-                                />
-                                <label htmlFor="email">Email</label>
-                                <span className="red-text">{errors.email}</span>
-                            </div>
-                            <div className="input-field col s12">
-                                <input
-                                    onChange={this.onChange}
                                     value={this.state.password}
                                     error={errors.password}
                                     id="password"
@@ -141,6 +137,20 @@ class Signup extends Component {
                                 />
                                 <label htmlFor="password2">Confirm Password</label>
                                 <span className="red-text">{errors.password2}</span>
+                            </div>
+                            <div className="input-field col s12">
+                                <input
+                                    onChange={this.onChange}
+                                    value={this.state.email}
+                                    error={errors.email}
+                                    id="email"
+                                    type="email"
+                                    className={classnames("", {
+                                        invalid: errors.email
+                                    })}
+                                />
+                                <label htmlFor="email">Email</label>
+                                <span className="red-text">{errors.email}</span>
                             </div>
                             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                                 <button

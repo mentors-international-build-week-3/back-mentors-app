@@ -198,8 +198,7 @@ router.put('/:id', (req, res) => {
                 (req.body.menteeLastName) ? message.menteeLastName = req.body.menteeLastName : null;
                 (req.body.phoneNumber) ? message.phoneNumber = req.body.phoneNumber : null;
                 (req.body.attending) ? message.attending = req.body.attending : null;
-                (req.body.noAttendReason) ? message.noAttendReason = req.body.noAttendReason : null;
-                (req.body.needBooks) ? message.needBooks = req.body.needBooks : null;
+
 
                 message
                     .save()

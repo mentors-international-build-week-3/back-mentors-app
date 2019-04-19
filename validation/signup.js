@@ -6,27 +6,23 @@ module.exports = function validateSignupInput(data) {
     let errors = {};
 
     // converts empty fields to an empty string so we can run validator
-    data.email = !isEmpty(data.email) ? data.email : "";
-    data.username = !isEmpty(data.username) ? data.username : "";
-    data.password = !isEmpty(data.password) ? data.password : "";
-    data.password2 = !isEmpty(data.password2) ? data.password2 : "";
     data.userFirstName = !isEmpty(data.userFirstName) ? data.userFirstName : "";
     data.userLastName = !isEmpty(data.userLastName) ? data.userLastName : "";
-    data.userType = !isEmpty(data.userType) ? data.userType : "";
+    data.password = !isEmpty(data.password) ? data.password : "";
+    data.password2 = !isEmpty(data.password2) ? data.password2 : "";
+    data.email = !isEmpty(data.email) ? data.email : "";
     data.phoneNumber = !isEmpty(data.phoneNumber) ? data.phoneNumber : "";
 
     
-    // checks email field
-    if (Validator.isEmpty(data.email)) {
-        errors.email = "Email field is required";
-    } else if (!Validator.isEmail(data.email)) {
-        errors.email = "Email is invalid";
-    }  
+    // checks userFirstName field
+    if (Validator.isEmpty(data.userFirstName)) {
+        errors.userFirstName = "First name field is required";
+    }    
 
-    // checks username field
-    if (Validator.isEmpty(data.username)) {
-        errors.username = "Username field is required";
-    }
+    // checks userLastName field
+    if (Validator.isEmpty(data.userLastName)) {
+        errors.userLastName = "Last name field is required";
+    }  
 
     // checks password field
     if (Validator.isEmpty(data.password)) {
@@ -45,21 +41,13 @@ module.exports = function validateSignupInput(data) {
         errors.password2 = "Passwords must match";
     }
 
-    // checks userFirstName field
-    if (Validator.isEmpty(data.userFirstName)) {
-        errors.userFirstName = "First name field is required";
-    }    
-
-    // checks userLastName field
-    if (Validator.isEmpty(data.userLastName)) {
-        errors.userLastName = "Last name field is required";
+    // checks email field
+    if (Validator.isEmpty(data.email)) {
+        errors.email = "Email field is required";
+    } else if (!Validator.isEmail(data.email)) {
+        errors.email = "Email is invalid";
     }  
-    
-    // checks userType field
-    if (Validator.isEmpty(data.userType)) {
-        errors.userType = "User type field is required";
-    }    
-
+      
     // checks phoneNumber field
     if (Validator.isEmpty(data.phoneNumber)) {
         errors.phoneNumber = "Phone number field is required";
