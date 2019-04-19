@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 import '../../App.css';
 
 class NewSms extends Component {
@@ -41,7 +42,10 @@ class NewSms extends Component {
   render() {
     return (
       <div className="App-container">
-        <h1 className="App-title">Send an Appointment Reminder to Your Student</h1>
+        <Link to="/students" className="btn-flat waves-effect">
+          <i className="material-icons left">keyboard_backspace</i> Back to
+            Students                      
+        </Link>
         <div className="App-content">
           <h2 className="App-content-heading">Send an Appointment Reminder to Your Student!</h2> 
           <div className="App-images-container">         
