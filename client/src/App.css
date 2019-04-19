@@ -1,0 +1,133 @@
+.App-container {
+    display: flex;
+    padding-bottom: 20px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    color: white;
+  }
+  
+  .App-title {
+    text-align: center;
+    font-size: 4.5rem;
+    margin: 10px 0 0px;
+  }
+  
+  .App-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 75%;
+    margin: 10px 0;
+    padding: 10px 0;
+    border: 3px solid silver;
+    border-radius: 10px;
+  }
+  
+  .App-content-heading {
+    width: 100%;
+    color: silver;
+    text-align: center;
+    font-size: 3.0rem;
+    margin: 10px;
+  }
+  
+  .App-images-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+  .fa-basketball-ball, .fa-comments {
+    font-size: 10.0rem;
+    color: white;
+  }
+  
+  .image-meme-container {
+    width: 35%;
+    margin: 10px 0 20px;
+    border-radius: 10px;
+  }
+  
+  .image-meme {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    border: 3px solid silver;
+  }
+  
+  .container-recipient {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 100px;
+    margin-bottom: 20px;
+  }
+  
+  .label-recipient {
+    width: 30%;
+    color: lime;
+    font-size: 2.5rem;
+    font-weight: bolder;
+  }
+  
+  .input-recipient {
+    width: 69%;
+    margin-left: 0px;
+    margin-right: 200px;
+    font-size: 2.3rem;
+    height: 45px;
+    border: 2px solid black;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+  
+  .container-message {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding-left: 100px;
+    width: 100%;
+    height: 100px;
+  }
+  
+  .label-message {
+    color: lime;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin-top: 2px;
+  }
+  
+  .text-area-message {
+    font-size: 2.3rem;
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 200px;
+    height: 100px;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-top: 5px;
+    border: 2px solid black;
+  }
+  
+  .send-button {
+    width: 25%;
+    border-radius: 20px;
+    height: 45px;
+    font-size: 2.5rem;
+    font-weight: bolder;
+    margin: 20px 0;
+  }
+  
+  .send-button:hover {
+    cursor: pointer;
+    color: white;
+    background-color: blue;
+    border: 3px solid yellow;
+  }

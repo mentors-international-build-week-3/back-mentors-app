@@ -223,7 +223,7 @@ class Messages extends React.Component {
       createData("What do you mean the new Lambda School 'Tiger-Woods-Victory-Red-Masters-Edition' golf polo swag is SOLD OUT already??? Say it ain't so, HOLDY!!", 'Ryan', 'Holdaway', 'Staff', '0'),
     ],
     page: 0,
-    rowsPerPage: 5,
+    rowsPerPage: 10,
   };
 
   handleRequestSort = (event, property) => {
