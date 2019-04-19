@@ -20,6 +20,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Messages from "./components/dashboard/Messages";
 import Students from "./components/dashboard/Students";
 import NewSms from "./components/dashboard/NewSms";
+import Rsvpbot from "./components/dashboard/Rsvpbot";
 
 
 
@@ -74,6 +75,7 @@ class App extends Component {
 						<PrivateRoute exact path="/students" component={Students} />
 						<PrivateRoute exact path="/messages" component={Messages} />
 						<PrivateRoute exact path="/newsms" component={NewSms} />
+						<PrivateRoute exact path="/rsvpbot" component={Rsvpbot} />
 					</Switch>
 				</div>
 			</Router>
