@@ -28,7 +28,7 @@ class NewSms extends Component {
     console.log("Your text message was sent successfully!");
     const { text } = this.state;
     //pass variables within the query string
-    fetch(`http://localhost:5000/api/messages/newsms?recipient=${text.recipient}&textmessage=${text.textmessage}` || `https://pacific-dusk-14025.herokuapp.com/api/messages/newsms?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    fetch(`http://localhost:5000/api/messages/newsms?recipient=${text.recipient}&textmessage=${text.textmessage}`)
     .catch(err => console.error(err));
 
     this.setState({
