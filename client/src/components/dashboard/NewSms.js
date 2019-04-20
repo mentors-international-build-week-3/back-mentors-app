@@ -1,39 +1,48 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { Link } from "react-router-dom";
 import '../../App.css';
 
 class NewSms extends Component {
-  
+
   state = {
-    text: {
+    sms: {
       recipient: '',
       textmessage: ''
     }
   };
 
   handleChangesInput = e => {
-    const { text } = this.state;
+    const { sms } = this.state;
     // console.log("The handleChangesInput() function was triggered!");
     e.preventDefault();
-    this.setState({ text: {...text, recipient: e.target.value}});
+    this.setState({ sms: {...sms, recipient: e.target.value}});
   }
 
   handleChangesTextarea = e => {
-    const { text } = this.state;
+    const { sms } = this.state;
     // console.log("The handleChangesTextarea() function was successful!");
     e.preventDefault();
-    this.setState({ text: {...text, textmessage: e.target.value}});
+    this.setState({ sms: {...sms, textmessage: e.target.value}});
   }
 
-  sendText = _ => {
-    console.log("Your text message was sent successfully!");
-    const { text } = this.state;
+  sendSms = _ => {
+    console.log("Your sms message was sent successfully!");
+    const { sms } = this.state;
     //pass variables within the query string
-    fetch(`http://localhost:5000/api/messages/newsms?recipient=${text.recipient}&textmessage=${text.textmessage}`)
+    fetch(`http://localhost:5000/api/messages/newsms?recipient=${sms.recipient}&textmessage=${sms.textmessage}`)
     .catch(err => console.error(err));
 
+    // axios.get('http://jsonplaceholder.typicode.com/todos')
+    //   .then(function (response) {
+    //     resultElement.innerHTML = generateSuccessHTMLOutput(response);
+    //   })
+    //   .catch(function (error) {
+    //     resultElement.innerHTML = generateErrorHTMLOutput(error);
+    //   });  
+
     this.setState({
-      text: {
+      sms: {
         recipient: '',
         textmessage: ''
       }
@@ -64,8 +73,8 @@ class NewSms extends Component {
             <label className="label-recipient">Phone Number:</label>
             <input 
               className="input-recipient"
-              type="text"
-              value={this.state.text.recipient}
+              type="sms"
+              value={this.state.sms.recipient}
               onChange={this.handleChangesInput}
               placeholder="Phone Number"
             />
@@ -73,16 +82,16 @@ class NewSms extends Component {
           <div className="container-message">
             <label className="label-message">Message:</label>
             <textarea 
-              className="text-area-message"
-              type="text"
-              value={this.state.text.textmessage}
+              className="sms-area-message"
+              type="sms"
+              value={this.state.sms.textmessage}
               onChange={this.handleChangesTextarea}
               placeholder="Message"
             />
           </div>
           <button 
             className="send-button"
-            onClick={this.sendText}
+            onClick={this.sendSms}
           >
             Send Text
           </button>
