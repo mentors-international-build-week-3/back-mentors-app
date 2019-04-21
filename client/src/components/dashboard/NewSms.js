@@ -12,42 +12,47 @@ class NewSms extends Component {
     }
   };
 
-  handleChangesInput = e => {
+  handleChangesInput = event => {
     const { sms } = this.state;
     // console.log("The handleChangesInput() function was triggered!");
-    e.preventDefault();
-    this.setState({ sms: {...sms, recipient: e.target.value}});
+    event.preventDefault();
+    this.setState({ sms: {...sms, recipient: event.target.value}});
   }
 
-  handleChangesTextarea = e => {
+  handleChangesTextarea = event => {
     const { sms } = this.state;
     // console.log("The handleChangesTextarea() function was successful!");
-    e.preventDefault();
-    this.setState({ sms: {...sms, textmessage: e.target.value}});
+    event.preventDefault();
+    this.setState({ sms: {...sms, textmessage: event.target.value}});
   }
 
-  sendSms = e => {
-    const { sms } = this.state;
+sendSms(event) {
+	const { sms } = this.state;
+	
+	event.preventDefault();
+	
+	const tagline = `***Hi! You've received this SMS from a user who's exploring Tico Thepsourinthone's LATEST Build-Weeks Project at Lambda School! 
+		Check out Tico's FUN project for yourself (https://pacific-dusk-14025.herokuapp.com/) and have a BLESSED day!*** || ~TICO'S APP USER~ says, "`;
 
-    e.preventDefault();
-	const tagline = `*** Hi! You've received this text message from a user who's exploring Tico Thepsourinthone's LATEST Build-Weeks Project at Lambda School! 
-		See how AWESOME this app is for yourself at https://pacific-dusk-14025.herokuapp.com/ !*** MESSAGE FROM APP USER: `;
-
-    axios.post(`http://localhost:5000/api/messages/newsms?recipient=${sms.recipient}&textmessage=${tagline + '"' + sms.textmessage + '"'}`)
-      .then(res => {
-        console.log(this.state.sms.textmessage);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-      this.setState({
-        sms: {
-          recipient: '',
-          textmessage: ''
-        }
-    });
-  }
+	if (this.state.sms.recipient === '' || (!this.state.sms.recipient)) {
+		return;
+	} else {
+		axios.post(`/api/messages/newsms?recipient=${sms.recipient}&textmessage=${tagline + sms.textmessage + '"'}`)
+		.then(res => {
+		  console.log(res);
+		})
+		.catch(error => {
+		  console.log(error);
+		});
+  
+		this.setState({
+		  sms: {
+			recipient: '',
+			textmessage: ''
+		  }
+	  	});
+	}
+}
 
   render() {
     return (
@@ -67,7 +72,7 @@ class NewSms extends Component {
               />
             </div>            
           </div>
-		  <form className="new-sms-form" onSubmit={this.sendSms}>
+		  <form className="new-sms-form" onSubmit={event => this.sendSms(event)}>
 			<div className="phone-number-container">
 				<label className="phone-number-label">Phone Number:</label>
 				<input 
