@@ -26,26 +26,26 @@ class NewSms extends Component {
     this.setState({ sms: {...sms, textmessage: e.target.value}});
   }
 
-  sendSms = _ => {
-    console.log("Your sms message was sent successfully!");
+  sendSms = e => {
     const { sms } = this.state;
-    //pass variables within the query string
-    fetch(`http://localhost:5000/api/messages/newsms?recipient=${sms.recipient}&textmessage=${sms.textmessage}`)
-    .catch(err => console.error(err));
 
-    // axios.get('http://jsonplaceholder.typicode.com/todos')
-    //   .then(function (response) {
-    //     resultElement.innerHTML = generateSuccessHTMLOutput(response);
-    //   })
-    //   .catch(function (error) {
-    //     resultElement.innerHTML = generateErrorHTMLOutput(error);
-    //   });  
+    e.preventDefault();
+	const tagline = `*** Hi! You've received this text message from a user who's exploring Tico Thepsourinthone's LATEST Build-Weeks Project at Lambda School! 
+		See how AWESOME this app is for yourself at https://pacific-dusk-14025.herokuapp.com/ !*** MESSAGE FROM APP USER: `;
 
-    this.setState({
-      sms: {
-        recipient: '',
-        textmessage: ''
-      }
+    axios.post(`http://localhost:5000/api/messages/newsms?recipient=${sms.recipient}&textmessage=${tagline + '"' + sms.textmessage + '"'}`)
+      .then(res => {
+        console.log(this.state.sms.textmessage);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+      this.setState({
+        sms: {
+          recipient: '',
+          textmessage: ''
+        }
     });
   }
 
@@ -57,44 +57,43 @@ class NewSms extends Component {
             Students                      
         </Link>
         <div className="App-content">
-          <h2 className="App-content-heading">Send an Appointment Reminder to Your Student!</h2> 
-          <div className="App-images-container">         
-            <i className="fas fa-basketball-ball"></i>
-            <div className="image-meme-container">
+          <h2 className="App-content-heading">Create an Appointment Reminder for Your Client!</h2> 
+          <div className="meme-container">         
+            <div className="image-container">
               <img 
-                className="image-meme"
+                className="image"
                 src="https://sayingimages.com/wp-content/uploads/group-texting-aint-nobody-got-time-for-that-text-meme.jpg" 
                 alt="'Ain't nobody got time for that' meme."
               />
             </div>            
-            <i className="far fa-comments"></i>
           </div>
-          <div className="container-recipient">
-            <label className="label-recipient">Phone Number:</label>
-            <input 
-              className="input-recipient"
-              type="sms"
-              value={this.state.sms.recipient}
-              onChange={this.handleChangesInput}
-              placeholder="Phone Number"
-            />
-          </div>
-          <div className="container-message">
-            <label className="label-message">Message:</label>
-            <textarea 
-              className="sms-area-message"
-              type="sms"
-              value={this.state.sms.textmessage}
-              onChange={this.handleChangesTextarea}
-              placeholder="Message"
-            />
-          </div>
-          <button 
-            className="send-button"
-            onClick={this.sendSms}
-          >
-            Send Text
-          </button>
+		  <form className="new-sms-form" onSubmit={this.sendSms}>
+			<div className="phone-number-container">
+				<label className="phone-number-label">Phone Number:</label>
+				<input 
+				className="phone-number-input"
+				type="sms"
+				value={this.state.sms.recipient}
+				onChange={this.handleChangesInput}
+				placeholder="Phone Number"
+				/>
+			</div>
+			<div className="message-container">
+				<label className="message-label">Message:</label>
+				<textarea 
+					type="sms"
+					value={this.state.sms.textmessage}
+					onChange={this.handleChangesTextarea}
+					placeholder="Message"
+				/>
+			</div>
+			<button 
+				className="send-button"
+				type="submit"
+			>
+				Send SMS
+			</button>			  
+		  </form>
         </div>
       </div>
     );

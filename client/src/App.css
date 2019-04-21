@@ -8,12 +8,6 @@
     color: white;
   }
   
-  .App-title {
-    text-align: center;
-    font-size: 4.5rem;
-    margin: 10px 0 0px;
-  }
-  
   .App-content {
     display: flex;
     flex-direction: column;
@@ -30,37 +24,36 @@
     width: 100%;
     color: blue;
     text-align: center;
-    font-size: 3.0rem;
+    font-size: 2.5rem;
     margin: 10px;
   }
+
+  .new-sms-form {
+    text-align: center;
+  }
   
-  .App-images-container {
+  .meme-container {
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
   }
   
-  .fa-basketball-ball, .fa-comments {
-    font-size: 10.0rem;
-    color: white;
-  }
-  
-  .image-meme-container {
-    width: 35%;
+  .image-container {
+    width: 40%;
     margin: 10px 0 20px;
     border-radius: 10px;
   }
   
-  .image-meme {
+  .image {
     width: 100%;
     height: auto;
     border-radius: 10px;
     border: 3px solid silver;
   }
   
-  .container-recipient {
+  .phone-number-container {
     width: 100%;
     height: 50px;
     display: flex;
@@ -71,17 +64,17 @@
     margin-bottom: 20px;
   }
   
-  .label-recipient {
+  .phone-number-label {
     width: 30%;
     color: blue;
     font-size: 1.5rem;
     font-weight: bolder;
   }
   
-  .input-recipient {
+  .phone-number-input {
     width: 69%;
     margin-left: 0px;
-    margin-right: 200px;
+    margin-right: 150px;
     font-size: 1.5rem;
     height: 45px;
     border: 2px solid black;
@@ -89,7 +82,7 @@
     padding-left: 10px;
   }
   
-  .container-message {
+  .message-container {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -98,18 +91,18 @@
     height: 100px;
   }
   
-  .label-message {
+  .message-label {
     color: blue;
     font-size: 1.5rem;
     font-weight: bolder;
     margin-top: 2px;
   }
   
-  .sms-area-message {
-    font-size: 1.8rem;
+  textarea {
+    font-size: 1.5rem;
     width: 100%;
     margin-left: 20px;
-    margin-right: 200px;
+    margin-right: 150px;
     height: 100px;
     border-radius: 5px;
     padding-left: 10px;
@@ -121,7 +114,7 @@
     width: 25%;
     border-radius: 20px;
     height: 45px;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: bolder;
     margin: 20px 0;
   }
