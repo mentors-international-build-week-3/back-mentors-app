@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
 // @route   GET request to the '/api/newmessage' endpoint
 // @desc    Sends a single SMS to a specific phone number
 // @access  Public
-router.get('/newsms', (req, res) => {
+router.get('/newsms', async (req, res) => {
     
     const { recipient, textmessage } = req.query
 
@@ -52,7 +52,7 @@ router.get('/newsms', (req, res) => {
 // @route   POST request to the '/api/messages' endpoint
 // @desc    Creates an SMS conversation with the mentee; creates a new message document
 // @access  Public 
-router.post('/', async (req, res) => {
+router.post('/rsvpbot', async (req, res) => {
 
     let menteeNumber = req.body.From; // refers to mentee's phone number
     let appNumber = req.body.To; // refers to the app's phone number
@@ -180,6 +180,7 @@ router.post('/', async (req, res) => {
     });
 });
 
+
 // @route   DELETE request to the 'api/messages/:id' endpoint
 // @desc    Deletes a specific message
 // @access  Public
@@ -200,6 +201,7 @@ router.delete('/:id', (req, res) => {
             res.status(500).json({ error_message: "Something went wrong while trying to delete this message from the database"});
         });
 });
+
 
 // @route   PUT request to 'api/messages/:id'
 // @desc    Updates a specific message's document
