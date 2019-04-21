@@ -19,7 +19,7 @@ class Dashboard extends Component {
                 <div className="row">
                     <div className="col s12 center-align">
                         <h3>
-                            <b>Hello there!</b>
+                            <b>Hello there, {this.props.auth.user.userFirstName}!</b>
                         </h3>
                         <h4>
                             <b>Welcome to your Mentor Dashboard!</b>
