@@ -37,7 +37,7 @@ sendSms(event) {
 	if (this.state.sms.recipient === '' || (!this.state.sms.recipient)) {
 		return;
 	} else {
-		axios.post(`/api/messages/newsms?recipient=${sms.recipient}&textmessage=${tagline + sms.textmessage + '"'}`)
+		axios.get(`/api/messages/newsms?recipient=${sms.recipient}&textmessage=${tagline + sms.textmessage + '"'}`)
 		.then(res => {
 		  console.log(res);
 		})

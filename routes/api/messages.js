@@ -34,7 +34,7 @@ router.get("/", (req, res) => {
 // @route   GET request to the '/api/newmessage' endpoint
 // @desc    Sends a single SMS to a specific phone number
 // @access  Public
-router.post('/newsms', async (req, res) => {
+router.get('/newsms', async (req, res) => {
     
     const { recipient, textmessage } = req.query
 
