@@ -175,7 +175,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
           <Typography variant='h6' id='tableTitle'>
-            Outgoing Messages (Examples)
+            ***FOR PRESENTATIONAL PURPOSES ONLY***
           </Typography>
         )}
       </div>
