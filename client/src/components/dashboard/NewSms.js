@@ -64,10 +64,15 @@ class NewSms extends Component {
   render() {
     return (
       <div className='App-container'>
-        <Link to='/students' className='btn-flat waves-effect'>
-          <i className='material-icons left'>keyboard_backspace</i> Back to
-          Students
-        </Link>
+        <div className='sms-nav-bar'>
+          <Link
+            to='/students'
+            className='btn-flat waves-effect back-to-students-link'
+          >
+            <i className='material-icons left'>keyboard_backspace</i> Back to
+            Students
+          </Link>
+        </div>
         <div className='App-content'>
           <Typography
             component='h1'

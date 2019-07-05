@@ -28,6 +28,14 @@
   margin: 10px;
 }
 
+.back-to-students-link {
+}
+
+.sms-nav-bar {
+  background-color: lightgray;
+  width: 100%;
+}
+
 .new-sms-form {
   text-align: center;
 }
