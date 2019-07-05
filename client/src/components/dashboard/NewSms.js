@@ -83,23 +83,53 @@ class NewSms extends Component {
           >
             Create an Appointment Reminder
           </Typography>
-          <Typography
-            variant='h6'
-            align='center'
-            color='textSecondary'
-            paragraph
-          >
-            With appointment reminders, simply enter in your mentee's phone
-            number, using this format "xxx-xxx-xxxx", & write out a short
-            message for them. Then, click the 'Send SMS' button!
-          </Typography>
           <div className='meme-container'>
             <div className='image-container'>
               <img
                 className='image'
                 src={mentee}
-                alt="'Ain't nobody got time for that' meme."
+                alt='A mentor working with a mentee.'
               />
+            </div>
+          </div>
+          <div className='App-content-subheading'>
+            <Typography
+              variant='h6'
+              align='center'
+              color='textSecondary'
+              paragraph
+            >
+              With our SMS reminders, making sure your mentee is aware of an
+              upcoming appointment is a breeze! Just follow the 3 steps below to
+              get started!
+            </Typography>
+            <div className='steps-new-sms'>
+              <Typography
+                variant='h6'
+                align='left'
+                color='textSecondary'
+                paragraph
+              >
+                1) Enter your mentee's phone number into the "Phone Number"
+                field below.
+              </Typography>
+              <Typography
+                variant='h6'
+                align='left'
+                color='textSecondary'
+                paragraph
+              >
+                2) Add a message to the "Message" field, including the date/time
+                of their next appointment.
+              </Typography>
+              <Typography
+                variant='h6'
+                align='left'
+                color='textSecondary'
+                paragraph
+              >
+                3) Then, click the 'Send SMS' button! And Voila!
+              </Typography>
             </div>
           </div>
           <form
@@ -113,7 +143,7 @@ class NewSms extends Component {
                 type='sms'
                 value={this.state.sms.recipient}
                 onChange={this.handleChangesInput}
-                placeholder='Phone Number'
+                placeholder='i.e. 123-456-7891'
               />
             </div>
             <div className='message-container'>
@@ -122,7 +152,7 @@ class NewSms extends Component {
                 type='sms'
                 value={this.state.sms.textmessage}
                 onChange={this.handleChangesTextarea}
-                placeholder='Message'
+                placeholder='Hi, Ronaldo! Your next appointment with me is on Thursday, June 27, 2019, at 1:15 PM.'
               />
             </div>
             <button className='send-button' type='submit'>
