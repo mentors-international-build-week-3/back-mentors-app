@@ -90,7 +90,7 @@ class Rsvpbot extends Component {
               color='textSecondary'
               paragraph
             >
-              To deploy the RSVP Bot, just follow the 3 steps below!
+              To deploy the RSVP Bot, just follow the steps below!
             </Typography>
             <div className='steps-new-sms'>
               <Typography
