@@ -30,7 +30,7 @@ class NewSms extends Component {
   smsAlert = () => {
     setTimeout(function() {
       alert(`Your message has been sent!`);
-    }, 2000);
+    }, 1500);
   };
 
   sendSms(event) {
@@ -38,7 +38,7 @@ class NewSms extends Component {
 
     event.preventDefault();
 
-    const tagline = `Hi! You've received this SMS Appointment Reminder from your mentor on Tico Thepsourinthone's 'Mentors International Training Reminders' App! Your mentor says: "`;
+    const tagline = `Hi! You've received this SMS Appointment Reminder from your mentor on the "Mentors International Training Reminders" App! Your mentor says: "`;
 
     if (this.state.sms.recipient === '' || !this.state.sms.recipient) {
       return;

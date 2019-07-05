@@ -24,7 +24,7 @@ class Rsvpbot extends Component {
   rsvpAlert = () => {
     setTimeout(function() {
       alert(`Your RSVP bot has been deployed!`);
-    }, 2000);
+    }, 1500);
   };
 
   sendSms(event) {
@@ -32,7 +32,7 @@ class Rsvpbot extends Component {
 
     event.preventDefault();
 
-    const rsvp_tagline = `Hi! You've received this RSVP request from your mentor on Tico Thepsourinthone's 'Mentors International Training Reminders' App!`;
+    const rsvp_tagline = `Hello there! You've received this RSVP request from your mentor on the "Mentors International Training Reminders" App!`;
 
     if (this.state.sms.recipient === '' || !this.state.sms.recipient) {
       return;
