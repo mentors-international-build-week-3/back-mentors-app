@@ -27,6 +27,12 @@ class NewSms extends Component {
     this.setState({ sms: { ...sms, textmessage: event.target.value } });
   };
 
+  smsAlert = () => {
+    setTimeout(function() {
+      alert(`Your message has been sent!`);
+    }, 2000);
+  };
+
   sendSms(event) {
     const { sms } = this.state;
 
@@ -49,6 +55,8 @@ class NewSms extends Component {
         .catch(error => {
           console.log(error);
         });
+
+      this.smsAlert();
 
       this.setState({
         sms: {
