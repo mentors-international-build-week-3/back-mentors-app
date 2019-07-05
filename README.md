@@ -1,4 +1,4 @@
-# back-mentors-app
+# Mentors International Training Reminders App
 
 ## Resources
 
