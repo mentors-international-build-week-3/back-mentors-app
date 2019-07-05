@@ -68,6 +68,12 @@
   border-radius: 5px;
 }
 
+.rsvpbot-image-container {
+  width: 30%;
+  margin: 10px 0 20px;
+  border-radius: 5px;
+}
+
 .image {
   width: 100%;
   height: auto;

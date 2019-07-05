@@ -83,10 +83,11 @@ function Students(props) {
               color='textSecondary'
               paragraph
             >
-              Now, with text reminders, you can give your students a heads up on
-              their next mentoring session to improve their attendance. That's
-              not all! Try using our new SMS chatbot to get a RSVP count for a
-              future mentor session!
+              Now, with SMS appointment reminders, you can give your students a
+              heads up on their next mentoring session to improve their
+              attendance. That's not all! Try using our new RSVP Bot to get a
+              more accurate idea of which mentees will be arriving for future
+              mentor sessions!
             </Typography>
             <div className={classes.heroButtons}>
               <Grid container spacing={16} justify='center'>
