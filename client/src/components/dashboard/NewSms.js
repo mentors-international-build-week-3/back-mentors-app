@@ -72,25 +72,16 @@ class NewSms extends Component {
             Students
           </Link>
         </div>
+        <Typography
+          component='h1'
+          variant='h2'
+          align='center'
+          color='textPrimary'
+          gutterBottom
+        >
+          Create an Appointment Reminder
+        </Typography>
         <div className='App-content'>
-          <Typography
-            component='h1'
-            variant='h2'
-            align='center'
-            color='textPrimary'
-            gutterBottom
-          >
-            Create an Appointment Reminder
-          </Typography>
-          <div className='meme-container'>
-            <div className='image-container'>
-              <img
-                className='image'
-                src={mentee}
-                alt='A mentor working with a mentee.'
-              />
-            </div>
-          </div>
           <div className='App-content-subheading'>
             <Typography
               variant='h6'
@@ -98,9 +89,8 @@ class NewSms extends Component {
               color='textSecondary'
               paragraph
             >
-              With our SMS reminders, making sure your mentee is aware of an
-              upcoming appointment is a breeze! Just follow the 3 steps below to
-              get started!
+              Just follow the 3 steps below to make sure your mentee is aware of
+              an upcoming appointment!
             </Typography>
             <div className='steps-new-sms'>
               <Typography
@@ -130,6 +120,15 @@ class NewSms extends Component {
                 3) Then, click the 'Send SMS' button! And Voila!
               </Typography>
             </div>
+          </div>
+        </div>
+        <div className='img-form-container'>
+          <div className='image-container'>
+            <img
+              className='image'
+              src={mentee}
+              alt='A mentor working with a mentee.'
+            />
           </div>
           <form
             className='new-sms-form'
