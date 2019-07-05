@@ -32,8 +32,7 @@ class NewSms extends Component {
 
     event.preventDefault();
 
-    const tagline = `***Hi! You've received this SMS from a user who's exploring Tico Thepsourinthone's LATEST Build-Weeks Project at Lambda School! 
-		Check out Tico's FUN project for yourself (https://pacific-dusk-14025.herokuapp.com/) and have a BLESSED day!*** || ~TICO'S APP USER~ says, "`;
+    const tagline = `Hi! You've received this SMS Appointment Reminder from your mentor on Tico Thepsourinthone's 'Mentors International Training Reminders' App! Your mentor says: "`;
 
     if (this.state.sms.recipient === '' || !this.state.sms.recipient) {
       return;
