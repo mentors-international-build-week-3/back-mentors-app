@@ -34,6 +34,7 @@
 
 .steps-new-sms {
   display: flex;
+  margin-left: 10%;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -89,15 +90,15 @@
   color: black;
   font-size: 1.5rem;
   font-weight: bolder;
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 .phone-number-input {
-  width: 69%;
+  width: 100%;
   font-size: 1.5rem;
   height: 45px;
   border: 2px solid black;
-  border-radius: 5px;
+  border-radius: 4px;
   padding: 5px 15px;
 }
 
@@ -119,7 +120,7 @@
 
 textarea {
   font-size: 1.5rem;
-  width: 100%;
+  width: 99%;
   height: 150px;
   border-radius: 5px;
   padding: 5px 15px;

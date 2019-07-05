@@ -72,16 +72,16 @@ class NewSms extends Component {
             Students
           </Link>
         </div>
-        <Typography
-          component='h1'
-          variant='h2'
-          align='center'
-          color='textPrimary'
-          gutterBottom
-        >
-          Create an Appointment Reminder
-        </Typography>
         <div className='App-content'>
+          <Typography
+            component='h1'
+            variant='h2'
+            align='center'
+            color='textPrimary'
+            gutterBottom
+          >
+            Create an Appointment Reminder
+          </Typography>
           <div className='App-content-subheading'>
             <Typography
               variant='h6'
@@ -108,8 +108,8 @@ class NewSms extends Component {
                 color='textSecondary'
                 paragraph
               >
-                2) Add a message to the "Message" field, including the date/time
-                of their next appointment.
+                2) Add a message to the "Message" field, including the date &
+                time of their next appointment.
               </Typography>
               <Typography
                 variant='h6'
