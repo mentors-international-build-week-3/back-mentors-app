@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import '../../App.css';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import mentee from './mentee.jpg';
 
 class NewSms extends Component {
@@ -67,9 +69,25 @@ class NewSms extends Component {
           Students
         </Link>
         <div className='App-content'>
-          <h2 className='App-content-heading'>
-            Create an Appointment Reminder for Your Client!
-          </h2>
+          <Typography
+            component='h1'
+            variant='h2'
+            align='center'
+            color='textPrimary'
+            gutterBottom
+          >
+            Create an Appointment Reminder
+          </Typography>
+          <Typography
+            variant='h6'
+            align='center'
+            color='textSecondary'
+            paragraph
+          >
+            With appointment reminders, simply enter in your mentee's phone
+            number, using this format "xxx-xxx-xxxx", & write out a short
+            message for them. Then, click the 'Send SMS' button!
+          </Typography>
           <div className='meme-container'>
             <div className='image-container'>
               <img

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -61,51 +61,63 @@ function Students(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Link to="/dashboard" className="btn-flat waves-effect">
-        <i className="material-icons left">keyboard_backspace</i> Back to
-          home                      
+      <Link to='/dashboard' className='btn-flat waves-effect'>
+        <i className='material-icons left'>keyboard_backspace</i> Back to home
       </Link>
       <main>
         {/* Hero unit */}
         <div className={classes.heroUnit}>
           <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <Typography
+              component='h1'
+              variant='h2'
+              align='center'
+              color='textPrimary'
+              gutterBottom
+            >
               Students
             </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" paragraph>
-              Now, with text reminders, you can give your students a heads up on their next mentoring session to improve their attendance. That's not all!
-              Try using our new SMS chatbot to get a RSVP count for a future mentor session!
+            <Typography
+              variant='h6'
+              align='center'
+              color='textSecondary'
+              paragraph
+            >
+              Now, with text reminders, you can give your students a heads up on
+              their next mentoring session to improve their attendance. That's
+              not all! Try using our new SMS chatbot to get a RSVP count for a
+              future mentor session!
             </Typography>
             <div className={classes.heroButtons}>
-              <Grid container spacing={16} justify="center">
+              <Grid container spacing={16} justify='center'>
                 <Grid item>
-                  <Link 
-                      to="/newsms"
-                      href="/newsms"
-                      style={{
-                        width: "150px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        margin: "1rem"
-                      }}
-                      className="btn btn-large waves-effect waves-light hoverable pink accent-5"
+                  <Link
+                    to='/newsms'
+                    href='/newsms'
+                    style={{
+                      width: '150px',
+                      borderRadius: '3px',
+                      letterSpacing: '1.5px',
+                      margin: '1rem',
+                    }}
+                    className='btn btn-large waves-effect waves-light hoverable pink accent-5'
                   >
-                      New SMS         
+                    New SMS
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link 
-                      to="/rsvpbot"
-                      href="/rsvpbot"
-                      style={{
-                        width: "150px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        margin: "1rem"
-                      }}
-                      className="btn btn-large waves-effect waves-light hoverable purple accent-5"
-                    >
-                      RSVP bot        
+                  <Link
+                    to='/rsvpbot'
+                    href='/rsvpbot'
+                    style={{
+                      width: '150px',
+                      borderRadius: '3px',
+                      letterSpacing: '1.5px',
+                      margin: '1rem',
+                    }}
+                    className='btn btn-large waves-effect waves-light hoverable purple accent-5'
+                  >
+                    RSVP bot
                   </Link>
                 </Grid>
               </Grid>
@@ -125,10 +137,15 @@ function Students(props) {
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Mentors International © 
+        <Typography variant='h6' align='center' gutterBottom>
+          Mentors International ©
         </Typography>
-        <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
+        <Typography
+          variant='subtitle1'
+          align='center'
+          color='textSecondary'
+          component='p'
+        >
           Lambda School Build Week April 15-19
         </Typography>
       </footer>
