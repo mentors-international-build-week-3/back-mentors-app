@@ -64,7 +64,7 @@ class NewSms extends Component {
   render() {
     return (
       <div className='App-container'>
-        <div className='sms-nav-bar'>
+        <div className='students-nav-bar'>
           <Link
             to='/students'
             className='btn-flat waves-effect back-to-students-link'
