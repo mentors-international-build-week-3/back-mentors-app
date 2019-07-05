@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -47,14 +47,26 @@ function stableSort(array, cmp) {
 }
 
 function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
+  return order === 'desc'
+    ? (a, b) => desc(a, b, orderBy)
+    : (a, b) => -desc(a, b, orderBy);
 }
 
 const rows = [
   { id: 'message', numeric: false, disablePadding: true, label: 'Message' },
-  { id: 'menteefirstName', numeric: true, disablePadding: false, label: "Recipient's First Name" },
-  { id: 'menteeLastName', numeric: true, disablePadding: false, label: "Recipient's Last Name" },
-  { id: 'group', numeric: true, disablePadding: false, label: "Group" },
+  {
+    id: 'menteefirstName',
+    numeric: true,
+    disablePadding: false,
+    label: "Recipient's First Name",
+  },
+  {
+    id: 'menteeLastName',
+    numeric: true,
+    disablePadding: false,
+    label: "Recipient's Last Name",
+  },
+  { id: 'group', numeric: true, disablePadding: false, label: 'Group' },
   { id: 'RSVP', numeric: true, disablePadding: false, label: 'RSVP' },
 ];
 
@@ -64,12 +76,18 @@ class EnhancedTableHead extends React.Component {
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const {
+      onSelectAllClick,
+      order,
+      orderBy,
+      numSelected,
+      rowCount,
+    } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
+          <TableCell padding='checkbox'>
             <Checkbox
               indeterminate={numSelected > 0 && numSelected < rowCount}
               checked={numSelected === rowCount}
@@ -85,7 +103,7 @@ class EnhancedTableHead extends React.Component {
                 sortDirection={orderBy === row.id ? order : false}
               >
                 <Tooltip
-                  title="Sort"
+                  title='Sort'
                   placement={row.numeric ? 'bottom-end' : 'bottom-start'}
                   enterDelay={300}
                 >
@@ -99,7 +117,7 @@ class EnhancedTableHead extends React.Component {
                 </Tooltip>
               </TableCell>
             ),
-            this,
+            this
           )}
         </TableRow>
       </TableHead>
@@ -152,26 +170,26 @@ let EnhancedTableToolbar = props => {
     >
       <div className={classes.title}>
         {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
+          <Typography color='inherit' variant='subtitle1'>
             {numSelected} selected
           </Typography>
         ) : (
-          <Typography variant="h6" id="tableTitle">
-            Outgoing Messages
+          <Typography variant='h6' id='tableTitle'>
+            Outgoing Messages (Examples)
           </Typography>
         )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
+          <Tooltip title='Delete'>
+            <IconButton aria-label='Delete'>
               <DeleteIcon />
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
-            <IconButton aria-label="Filter list">
+          <Tooltip title='Filter list'>
+            <IconButton aria-label='Filter list'>
               <FilterListIcon />
             </IconButton>
           </Tooltip>
@@ -207,20 +225,104 @@ class Messages extends React.Component {
     orderBy: 'menteefirstName',
     selected: [],
     data: [
-      createData("!Hola, mi BroMigo! ?Como estas, BroChacho? ?Porque NADAAAAAAAAAA?", 'Julian', 'Moreno', 'Cohort', '1'),
-      createData("Hey, B-Dawg! How much can you bench press now?", 'Brandon', 'Gardner', 'Cohort', '0'),
-      createData("Dang, dude! How much bread are you making from working on Saturdays at the bakery?", 'Ryan', 'Clark', 'Cohort', '0'),
-      createData("You're making more bread than Kanye West (insert emoji with large eyes here)!", 'Ryan', 'Clark', 'Cohort', '0'),
-      createData('Did Ryan Hamblin REALLY say that Web17 was the best cohort to ever come through Lambda???', 'Jake', 'Thomas', 'PM', '1'),
-      createData("C'mon, Jamie! You know you can't use your ACTUAL cat for 'Rubber Ducky Debugging,' right?", 'Jamie', 'Goodnight', 'PM', '1'),
-      createData("Are you serious about waving the ISA for my PM group, Austen??? Thanks, man!!", 'Austen', 'Allred', 'Celebrity', '0'),
-      createData("Have you heard Dustin's new pre-lecture playlist?!? It's like 'Techno' and 'Star Wars' had a baby!", 'Lowell', 'Richardson', 'Cohort', '0'),
-      createData("Oh, my bad! I thought you meant 'bread', as in the slang-term for 'money' (insert shrug emoji here). LOL.", 'Ryan', 'Clark', 'Cohort', '0'),
-      createData("Dude, Mikaela just posted a puke vid in the pomodoro-hack channel from last weekend's half-marathon! Dope!", 'Jake', 'Thomas', 'PM', '1'),
-      createData("BIG KNELL-Y KNELL! If I pay you in Bitcoin, would you be able to willing to perform a drop-thumb banjo solo at my birthday party?", 'Josh', 'Knell', 'Instructor', '1'),
-      createData("Hey, Luis, when my airtable form throws an error and fails to submit, does it go to some sort of SQL-purgatory or nahhh???", 'Luis', 'Hernandez', 'Instructor', '0'),
-      createData("Do people still make ring-tones for their phones? Because I just made a DOPE one of Luis saying, 'SUUUUCCCCCCEEEESSSSSSSSSSSSSSSSS'!", 'Julian', 'Moreno', 'Cohort', '1'),
-      createData("What do you mean the new Lambda School 'Tiger-Woods-Victory-Red-Masters-Edition' golf polo swag is SOLD OUT already??? Say it ain't so, HOLDY!!", 'Ryan', 'Holdaway', 'Staff', '0'),
+      createData(
+        '!Hola, mi BroMigo! ?Como estas, BroChacho? ?Porque NADAAAAAAAAAA?',
+        'Julian',
+        'Moreno',
+        'Cohort',
+        '1'
+      ),
+      createData(
+        'Hey, B-Dawg! How much can you bench press now?',
+        'Brandon',
+        'Gardner',
+        'Cohort',
+        '0'
+      ),
+      createData(
+        'Dang, dude! How much bread are you making from working on Saturdays at the bakery?',
+        'Ryan',
+        'Clark',
+        'Cohort',
+        '0'
+      ),
+      createData(
+        "You're making more bread than Kanye West (insert emoji with large eyes here)!",
+        'Ryan',
+        'Clark',
+        'Cohort',
+        '0'
+      ),
+      createData(
+        'Did Ryan Hamblin REALLY say that Web17 was the best cohort to ever come through Lambda???',
+        'Jake',
+        'Thomas',
+        'PM',
+        '1'
+      ),
+      createData(
+        "C'mon, Jamie! You know you can't use your ACTUAL cat for 'Rubber Ducky Debugging,' right?",
+        'Jamie',
+        'Goodnight',
+        'PM',
+        '1'
+      ),
+      createData(
+        'Are you serious about waving the ISA for my PM group, Austen??? Thanks, man!!',
+        'Austen',
+        'Allred',
+        'Celebrity',
+        '0'
+      ),
+      createData(
+        "Have you heard Dustin's new pre-lecture playlist?!? It's like 'Techno' and 'Star Wars' had a baby!",
+        'Lowell',
+        'Richardson',
+        'Cohort',
+        '0'
+      ),
+      createData(
+        "Oh, my bad! I thought you meant 'bread', as in the slang-term for 'money' (insert shrug emoji here). LOL.",
+        'Ryan',
+        'Clark',
+        'Cohort',
+        '0'
+      ),
+      createData(
+        "Dude, Mikaela just posted a puke vid in the pomodoro-hack channel from last weekend's half-marathon! Dope!",
+        'Jake',
+        'Thomas',
+        'PM',
+        '1'
+      ),
+      createData(
+        'BIG KNELL-Y KNELL! If I pay you in Bitcoin, would you be able to willing to perform a drop-thumb banjo solo at my birthday party?',
+        'Josh',
+        'Knell',
+        'Instructor',
+        '1'
+      ),
+      createData(
+        'Hey, Luis, when my airtable form throws an error and fails to submit, does it go to some sort of SQL-purgatory or nahhh???',
+        'Luis',
+        'Hernandez',
+        'Instructor',
+        '0'
+      ),
+      createData(
+        "Do people still make ring-tones for their phones? Because I just made a DOPE one of Luis saying, 'SUUUUCCCCCCEEEESSSSSSSSSSSSSSSSS'!",
+        'Julian',
+        'Moreno',
+        'Cohort',
+        '1'
+      ),
+      createData(
+        "What do you mean the new Lambda School 'Tiger-Woods-Victory-Red-Masters-Edition' golf polo swag is SOLD OUT already??? Say it ain't so, HOLDY!!",
+        'Ryan',
+        'Holdaway',
+        'Staff',
+        '0'
+      ),
     ],
     page: 0,
     rowsPerPage: 10,
@@ -259,7 +361,7 @@ class Messages extends React.Component {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -279,17 +381,17 @@ class Messages extends React.Component {
   render() {
     const { classes } = this.props;
     const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
+    const emptyRows =
+      rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <Link to="/dashboard" className="btn-flat waves-effect">
-            <i className="material-icons left">keyboard_backspace</i> Back to
-                home                      
+        <Link to='/dashboard' className='btn-flat waves-effect'>
+          <i className='material-icons left'>keyboard_backspace</i> Back to home
         </Link>
         <EnhancedTableToolbar numSelected={selected.length} />
         <div className={classes.tableWrapper}>
-          <Table className={classes.table} aria-labelledby="tableTitle">
+          <Table className={classes.table} aria-labelledby='tableTitle'>
             <EnhancedTableHead
               numSelected={selected.length}
               order={order}
@@ -307,22 +409,22 @@ class Messages extends React.Component {
                     <TableRow
                       hover
                       onClick={event => this.handleClick(event, n.id)}
-                      role="checkbox"
+                      role='checkbox'
                       aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
                       selected={isSelected}
                     >
-                      <TableCell padding="checkbox">
+                      <TableCell padding='checkbox'>
                         <Checkbox checked={isSelected} />
                       </TableCell>
-                      <TableCell component="th" scope="row" padding="none">
+                      <TableCell component='th' scope='row' padding='none'>
                         {n.message}
                       </TableCell>
-                      <TableCell align="right">{n.menteefirstName}</TableCell>
-                      <TableCell align="right">{n.menteeLastName}</TableCell>
-                      <TableCell align="right">{n.group}</TableCell>
-                      <TableCell align="right">{n.RSVP}</TableCell>
+                      <TableCell align='right'>{n.menteefirstName}</TableCell>
+                      <TableCell align='right'>{n.menteeLastName}</TableCell>
+                      <TableCell align='right'>{n.group}</TableCell>
+                      <TableCell align='right'>{n.RSVP}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -336,7 +438,7 @@ class Messages extends React.Component {
         </div>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
-          component="div"
+          component='div'
           count={data.length}
           rowsPerPage={rowsPerPage}
           page={page}
