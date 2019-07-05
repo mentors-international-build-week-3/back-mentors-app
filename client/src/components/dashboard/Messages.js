@@ -271,7 +271,7 @@ class Messages extends React.Component {
         'Are you serious about waving the ISA for my PM group, Austen??? Thanks, man!!',
         'Austen',
         'Allred',
-        'Celebrity',
+        'CEO',
         '0'
       ),
       createData(
@@ -296,7 +296,7 @@ class Messages extends React.Component {
         '1'
       ),
       createData(
-        'BIG KNELL-Y KNELL! If I pay you in Bitcoin, would you be able to willing to perform a drop-thumb banjo solo at my birthday party?',
+        'BIG KNELL-Y KNELL! If I pay you in Bitcoin, would you be willing to perform a drop-thumb banjo solo at my birthday party?',
         'Josh',
         'Knell',
         'Instructor',
